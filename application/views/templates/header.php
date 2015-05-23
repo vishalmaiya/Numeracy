@@ -57,7 +57,7 @@ Use search to find needed section.
 	Body
 
 	Classes:
-	* 'theme-{THEME NAME}'
+	* 'theme-{THEME NAME}' - {dust,asphalt,silver,clean }
 	* 'right-to-left'      - Sets text direction to right-to-left
 	* 'main-menu-right'    - Places the main menu on the right side
 	* 'no-main-menu'       - Hides the main menu
@@ -65,7 +65,7 @@ Use search to find needed section.
 	* 'main-menu-fixed'    - Fixes the main menu
 	* 'main-menu-animated' - Animate main menu
 -->
-<body class="theme-dust main-menu-animated">
+<body class="theme-asphalt  main-menu-animated">
 
 <script>var init = [];</script>
 <!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
@@ -387,13 +387,16 @@ Use search to find needed section.
 					<a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
 				</li>
 				<li class="mm-dropdown">
-					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Layouts</span></a>
+					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Question Bank</span></a>
 					<ul>
 						<li>
-							<a tabindex="-1" href="layouts-grid.html"><span class="mm-text">Grid</span></a>
+							<a tabindex="-1" href="<?php echo site_url(); ?>all-questions">
+                            <i class="menu-icon fa fa-bars"></i>
+                            <span class="mm-text"></span>All Questions</a>
 						</li>
 						<li>
-							<a tabindex="-1" href="layouts-main-menu.html"><i class="menu-icon fa fa-th-list"></i><span class="mm-text">Main menu</span></a>
+							<a tabindex="-1" href="layouts-main-menu.html"><i class="menu-icon fa fa-plus"></i>
+                            <span class="mm-text">Add Question</span></a>
 						</li>
 					</ul>
 				</li>

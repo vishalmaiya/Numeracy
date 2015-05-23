@@ -91,7 +91,7 @@
 
 			<!-- Form -->
             <?php echo validation_errors(); ?>
-            <?php echo form_open('verifylogin'); ?>
+            <?php echo form_open('login'); ?>
 				<div class="signin-text">
 					<span>Sign In to your account</span>
 				</div> <!-- / .signin-text -->
