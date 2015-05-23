@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteBase /numeracy
+RewriteCond $1 !^(index\.php|images|table-images|robots\.txt|styles|js|uploads)
+RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
