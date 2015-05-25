@@ -56,3 +56,6 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = "admin/login";
 $route['logout'] = "admin/logout";
 $route['all-questions'] = "questions";
+$route['add-question'] = "questions/add_question";
+$route['edit-question'] = "questions/edit_question";
+$route['question-type'] = "questiontype/all_type";

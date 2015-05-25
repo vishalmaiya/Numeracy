@@ -395,8 +395,18 @@ Use search to find needed section.
                             <span class="mm-text"></span>All Questions</a>
 						</li>
 						<li>
-							<a tabindex="-1" href="layouts-main-menu.html"><i class="menu-icon fa fa-plus"></i>
+							<a tabindex="-1" href="<?php echo site_url(); ?>add-question"><i class="menu-icon fa fa-plus"></i>
                             <span class="mm-text">Add Question</span></a>
+						</li>
+					</ul>
+				</li>
+                <li class="mm-dropdown">
+					<a href="#"><i class="menu-icon fa fa-tasks"></i><span class="mm-text">Question Type</span></a>
+                    <ul>
+						<li>
+							<a tabindex="-1" href="<?php echo site_url(); ?>question-type">
+                            <i class="menu-icon fa fa-bars"></i>
+                            <span class="mm-text"></span>Question Types</a>
 						</li>
 					</ul>
 				</li>
