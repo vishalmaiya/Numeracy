@@ -19,6 +19,61 @@
 		// Javascript code here
 	})
 	window.LanderApp.start(init);
+    jQuery("#jquery-select-type").on("change",function(){
+
+                    var parentid = jQuery(this).val();
+                    var formData = {parent_id:parentid}; //Array 
+                     
+                        jQuery.ajax({
+                            url : "<?php echo site_url(); ?>questions/ajaxget_subtype",
+                            type: "POST",
+                            data : formData,
+                            success: function(data, textStatus, jqXHR)
+                            {
+                                var htmloption = '';
+                                var count = 0;
+                                var json = jQuery.parseJSON(data);
+                                var count = json.length;
+                                if(count > 0)
+                                {
+                                    htmloption = "<option>-- Select --</option>";
+                                }
+                                else
+                                {
+                                    htmloption = "<option disabled>-- No Subtype Available --</option>";
+                                }
+                                 $.each(json, function(index, element) {
+                                 htmloption += '<option value="' + element.id+ '">' + element.type + '</option>';
+                                  });
+                                $('#jquery-select-subtype').html(htmloption);
+                            
+                            
+                            },
+                            error: function (jqXHR, textStatus, errorThrown)
+                            {
+                         
+                            }
+                        });
+                    });
+          $(document).ready(function(){
+            $("#addmoreoption").click(function(){
+                 var indexnumber = $(".choices_wrapper .form-group").length +1;		
+                var content = "<div class='form-group'><label for=\"jq-validation-choice4\" class=\"col-sm-3 control-label\">Choice <span class=\"indexno\">"+indexnumber+"</span></label>";
+                    content += "<div class=\"col-sm-9\">";
+                    content += "<span class=\"input-group-addon custome-ans\"><label class=\"px-single\">";
+                    content += "<input type=\"radio\" name=\"qanswer\" class=\"px\"><span class=\"lbl\"></span></label></span>";
+                    content += "<input type=\"text\" class=\"form-control custom-input\" id=\"jq-validation-choice4\" name=\"choice[]\" placeholder=\"Required\">";
+                   // content += "";
+                $(".choices_wrapper").append(content+ "<span class=\"input-group-addon bg-danger no-border removeoption\"><a class=\"bg-danger\" href='javascript:void(0);' ><i class=\"fa fa-times\"></i></a></span></div></div>"); 
+            });
+            $(document).on("click", ".removeoption" , function() {
+                $(this).closest(".form-group").remove();
+                $( ".choices_wrapper .form-group .indexno" ).each(function( index ) {
+                  console.log( ++index + ": " + $( this ).text() );
+                $(this).text(index);
+                });
+            });
+        });
 </script>
 
 </body>

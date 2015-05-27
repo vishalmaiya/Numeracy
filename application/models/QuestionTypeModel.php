@@ -17,5 +17,21 @@ class QuestionTypeModel extends CI_Model{
         $result = $query->result();
         return $result;
     }
+    
+    function get_parent_type()
+    {
+        $this->db->select('*');
+        $result = $this->db->get_where('question_type',array('parent_id'=>0))->result();
+        return $result;
+    }
+    
+    function get_sub_type($parent_id)
+    {
+        $this->db->select('*');
+        $result = $this->db->get_where('question_type',array('parent_id'=>$parent_id))->result();
+        return $result;
+    }
+    
+ 
 }
 ?>

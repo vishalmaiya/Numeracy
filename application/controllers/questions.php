@@ -29,41 +29,71 @@ class Questions extends CI_Controller {
        //set validation rules
         $this->load->library('form_validation');
         $this->form_validation->set_rules('qtype', 'Question Type', 'trim|required|numeric');
-        $this->form_validation->set_rules('qsubtype', 'Question Sub Type', 'trim|required|numeric');
         $this->form_validation->set_rules('question', 'Question', 'required');
-        $this->form_validation->set_rules('answer', 'Answer', 'required');
         $this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
-
-        if ($this->form_validation->run() == FALSE)
+        $this->form_validation->set_rules('qanswer', 'Answer', 'required');
+        
+        if ($this->form_validation->run() == TRUE)
         {
-            //fail validation
-          $data['body'] = 'AddQuestion';
-            $this->load->view('template',$data);
-        }
-        else
-        {
-            $data = array(
+          $data = array(
                 'type' => $this->input->post('qtype'),
-                'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
                 'answer' => $this->input->post('answer'),
                 'difficulty_level' => $this->input->post('difficultylevel'),
                 );
-        //Transfering data to Model
-        $this->load->model('questionmodel');
-        $this->questionmodel->insert($data);
-        $data['message'] = 'Question Inserted Successfully';
-        //Loading View
-        $data['body'] = 'AddQuestion';
-        $this->load->view('template',$data);
-        }
+          $this->load->model('questionmodel');
+           $this->questionmodel->insert($data);
+           $data['message'] = 'Question Inserted Successfully';
+         }
+          
+       $this->load->model('questiontypemodel');
+       $data['all_parents'] = $this->questiontypemodel->get_parent_type();
+       $data['body'] = 'AddQuestion';
+       $this->load->view('template',$data);
+    }
+    
+    
+    function ajaxget_subtype()
+    {
+        $parent_id = $_POST['parent_id'];
+        $this->load->model('questiontypemodel');
+        $all_parents = $this->questiontypemodel->get_sub_type($parent_id);
+        $result = json_encode($all_parents);
+        print_r($result);
+        die;
+        
     }
     
      public function edit_question()
     {
-       $data['body'] = 'EditQuestion';
-       $this->load->view('template',$data); 
+        $qid = $_GET['qid'];
+        if(isset($_GET['qid']) && $_GET['qid'] != "")
+        {
+            $this->load->model('questionmodel');
+            $squestion = $this->questionmodel->get_single($qid);
+            if(!$squestion)
+            {
+                $data['error_message'] = "No Record Found";
+            }
+            else
+            {
+                $data['data'] = $squestion;
+                $this->load->model('questiontypemodel');
+                $data['all_parents'] = $this->questiontypemodel->get_parent_type();
+                $data['all_childs'] = $this->questiontypemodel->get_sub_type($squestion->id); 
+            }   
+           
+            
+            $data['body'] = 'EditQuestion';
+            $this->load->view('template',$data); 
+        }
+        else
+        {
+            redirect("all-questions");
+        }
+        
+         
     }
 
     

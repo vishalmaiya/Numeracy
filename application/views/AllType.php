@@ -20,14 +20,30 @@
     								</tr>
     							</thead>
     							<tbody>
-    								<tr>
-    									<td>1</td>
-    									<td>Mark</td>
-    								</tr>
-                                    <tr>
-    									<td>2</td>
-    									<td>James</td>
-    								</tr>
+                                    <?php
+                                    $i = 1;
+                                     foreach($alltypes as $type)
+                                        {
+                                            ?>
+                                            <tr>
+            									<td><?php echo $i++; ?></td>
+            									<td><?php echo $type->type; ?></td>
+            								</tr>
+                                            <?php
+                                            $subtypes = (array)$type->sub_type;
+                                            if (!empty($subtypes))
+                                            {
+                                                foreach($type->sub_type as $subtype):
+                                                ?>
+                                                <tr>
+                									<td></td>
+         									        <td>- <?php echo $subtype->type; ?></td>
+            								    </tr>
+                                                <?php
+                                                endforeach;
+                                            }
+                                        }
+                                        ?>
     							</tbody>
     						</table>
     					</div>
@@ -71,16 +87,11 @@
 								<div class="col-sm-8">
 									<select class="form-control" id="jq-validation-difficulty" name="qparent">
 										<option value="0">None</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
+                                        <?php foreach($alltypes as $type)
+                                            {
+                                                echo "<option value='".$type->id."'>".$type->type."</option>";
+                                            }
+                                        ?>
                                     </select>
 								</div>
 							</div>

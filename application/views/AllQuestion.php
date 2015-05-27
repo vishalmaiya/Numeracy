@@ -76,7 +76,7 @@
 										<td><?php echo $val->type; ?></td>
 										<td class="center"><?php echo $val->subtype; ?></td>
 										<td class="center"><?php echo $val->difficulty_level; ?></td>
-                                        <td><a href="" class="btn btn-info btn-sm btn-outline" >Edit</a></td>
+                                        <td><a href="<?php echo site_url();?>edit-question?qid=<?php echo $val->id;?>" class="btn btn-info btn-sm btn-outline" >Edit</a></td>
 									</tr>
                                   <?php  
                                 }
