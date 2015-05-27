@@ -1,7 +1,7 @@
 <div id="content-wrapper">
 
 		<div class="page-header">
-			<h1>Question Type</h1>
+			<h1><a href="<?php echo site_url(); ?>all-type/">Question Type</a></h1>
 		</div> <!-- / .page-header -->
 
 		<div class="row">
@@ -17,6 +17,7 @@
     								<tr>
     									<th>#</th>
     									<th>Name</th>
+                                        <th>Action</th>
     								</tr>
     							</thead>
     							<tbody>
@@ -26,8 +27,19 @@
                                         {
                                             ?>
                                             <tr>
-            									<td><?php echo $i++; ?></td>
-            									<td><?php echo $type->type; ?></td>
+            									<td><strong><?php echo $i++; ?></strong></td>
+            									<td><strong><?php echo $type->type; ?></strong></td>
+                                                <td>
+                                                <span style="float: left;">
+                                                    <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $type->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Edit</a>&nbsp;</span> 
+                                                 <span style="float: left;">
+                                                  <form method="post" action="">
+                                                        <input type="hidden" name="qtype" value="deltype"/>
+                                                        <input type="hidden" name="tid" value="<?php echo $type->id; ?>"/>
+                                                        <input type="submit" class="btn btn-danger btn-sm btn-outline qdelete" value="Delete"/>
+                                                  </form>
+                                                  </span>
+                                        </td>
             								</tr>
                                             <?php
                                             $subtypes = (array)$type->sub_type;
@@ -38,6 +50,17 @@
                                                 <tr>
                 									<td></td>
          									        <td>- <?php echo $subtype->type; ?></td>
+                                                    <td>
+                                                        <span style="float: left;">
+                                                            <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $subtype->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Edit</a>&nbsp;</span> 
+                                                        <span style="float: left;">
+                                                        <form method="post" action="">
+                                                            <input type="hidden" name="qtype" value="deltype"/>
+                                                            <input type="hidden" name="tid" value="<?php echo $subtype->id; ?>"/>
+                                                            <input type="submit" class="btn btn-danger btn-sm btn-outline qdelete" value="Delete"/>
+                                                         </form>
+                                                         </span>
+                                                  </td>
             								    </tr>
                                                 <?php
                                                 endforeach;
@@ -51,57 +74,16 @@
             </div>
             <div class="col-sm-6">
 
-<!-- 8. $BORDERED_FORM =============================================================================
-
-				Bordered form
--->
-                <?php
-                 $attributes = array('class' => 'panel form-horizontal form-bordered', 'id' => 'jq-validation-form');
-                 echo form_open('',$attributes); 
-                 echo validation_errors();
-                ?>
-                    <div class="panel-heading">
-						<span class="panel-title">Add Question Type</span>
-					</div>
-                    
-					<div class="panel-body no-padding-hr">
-						<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-                        <?php if(isset($message) && $message != "")
-                        {
-                            ?>
-                            <div class="note note-info">Record Added Successfully !</div>
-                            <?php
-                        }
-                        ?>
-                            
-							<div class="row">
-								<label class="col-sm-4 control-label">Name:</label>
-								<div class="col-sm-8">
-									<input type="text" name="qtype" class="form-control">
-								</div>
-							</div>
-						</div>
-						<div class="form-group no-margin-hr no-margin-b panel-padding-h">
-							<div class="row">
-								<label class="col-sm-4 control-label">Parent:</label>
-								<div class="col-sm-8">
-									<select class="form-control" id="jq-validation-difficulty" name="qparent">
-										<option value="0">None</option>
-                                        <?php foreach($alltypes as $type)
-                                            {
-                                                echo "<option value='".$type->id."'>".$type->type."</option>";
-                                            }
-                                        ?>
-                                    </select>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="panel-footer text-right">
-						<button class="btn btn-primary">Submit</button>
-					</div>
-				</form>
-<!-- /8. $BORDERED_FORM -->
+                    <?php 
+                    if($content == "AddType")
+                    {
+                        include("Addtype.php");
+                    }
+                    if($content == "EditType")
+                    {
+                        include("Edittype.php");
+                    }
+                    ?>
 			</div>
             </div>
     </div>

@@ -67,18 +67,23 @@
 					</div>
 					<div class="panel-body">
 		   <?php 
-            if(isset($error_message) && $error_message != "")
-            {
-                ?>
-                    <div class="note note-warning">
-			         <?php echo $error_message; ?>
-                    </div>
-                <?php
-            }else{
+            $errors = validation_errors();
+            if(!empty($errors)): ?>
+                <div class="alert alert-danger">
+					<button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+					<strong>Error</strong>  <?php echo validation_errors(); ?>
+				</div>
+            <?php endif; 
+            if(!empty($message)): ?>
+                <div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+					<strong></strong>  <?php echo $message; ?>
+				</div>
+            <?php endif;
             $attributes = array('class' => 'form-horizontal', 'id' => 'jq-validation-form');
-            echo form_open('',$attributes); ?>
+            echo form_open('edit-question?qid='.$_GET['qid'],$attributes); ?>
             <!-- / Javascript -->
-	           <?php echo validation_errors(); ?>
+	         
                 <div class="form-group">
                     <label for="jq-select-type" class="col-sm-3 control-label">Question Type</label>
 	                <div class="col-sm-9">
@@ -105,9 +110,11 @@
 						<label for="jq-select-subtype" class="col-sm-3 control-label">SubType</label>
 						<div class="col-sm-9">
 	                       <select id="jquery-select-subtype" class="form-control" name="qsubtype">
+                            <option>-- Select --</option>
                             <?php
                             foreach($all_childs as $child)
                             {
+                                echo  $data->subtype;
                                 if($child->id == $data->subtype)
                                 {
                                     echo "<option value='".$child->id."' selected>".$child->type."</option>";
@@ -135,14 +142,15 @@
                     {
                         ?>
                         <div class="form-group">
-							<label for="jq-validation-choice1" class="col-sm-3 control-label">Choice <span class="indexno"><?php echo $i++; ?></span></label>
+							<label for="jq-validation-choice1" class="col-sm-3 control-label">Choice <span class="indexno"><?php echo $i; ?></span></label>
 							<div class="col-sm-9">
-                                <?php if($i>5)
+                                <?php if($i>4)
                                 {
                                     ?>
                               <span class="input-group-addon custome-ans">
 								<label class="px-single">
-                                    <input type="radio" name="qanswer" value="<?php echo $option; ?>" class="px" />
+                                    <input type="radio" name="qanswer" value="<?php echo $i; ?>" class="px" 
+                                    <?php if($data->answer == $i)echo "checked"; ?>/>
                                         <span class="lbl"></span></label>
 							 </span>
                                     <input type="text" value="<?php echo $option; ?>" class="form-control custom-input" id="jq-validation-choice1" name="choice[]" placeholder="Required" />
@@ -157,11 +165,13 @@
                                 {
                                     ?>
                                     <span class="input-group-addon custome-ans">
-        								<label class="px-single"><input type="radio" name="qanswer" value="<?php echo $option; ?>" class="px"><span class="lbl"></span></label>
+        								<label class="px-single">
+                                            <input type="radio" name="qanswer" value="<?php echo $i; ?>" class="px" <?php if($data->answer == $i)echo "checked"; ?>/><span class="lbl"></span></label>
         							 </span>
                                     <input type="text" value="<?php echo $option; ?>" class="form-control custom-input" id="jq-validation-choice1" name="choice[]" placeholder="Required">
                                     <?php
                                 }
+                                $i++;
                                 ?>
 								
 							</div>
@@ -199,11 +209,11 @@
                      
                        <div class="form-group">
 								<div class="col-sm-offset-3 col-sm-9">
+                                    <input type="hidden" name="qid" value="<?php echo $_GET['qid']; ?>"/>
 									<input type="submit" class="btn btn-primary" value="Update Question" />
 								</div>
 							</div>
 						</form>
-                        <?php } ?>
 					</div>
 				</div>
 <!-- /5. $JQUERY_VALIDATION -->

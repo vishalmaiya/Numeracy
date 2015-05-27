@@ -68,7 +68,6 @@ Use search to find needed section.
 <body class="theme-asphalt  main-menu-animated">
 
 <script>var init = [];</script>
-<!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
 
 <div id="main-wrapper">
 
@@ -197,6 +196,7 @@ Use search to find needed section.
                     $types = true;
                 }
                 break;
+                
             } ?>
 			<ul class="navigation">
 				<li>

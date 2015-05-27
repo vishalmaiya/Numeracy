@@ -14,8 +14,24 @@ class QuestionModel extends CI_Model{
         $this->db->select('*');
         $this->db->from('question_bank');
         $query = $this->db->get();
-        $result = $query->result();
-        return $result;
+        $data = $query->result();
+        foreach($data as $res)
+        {
+           $type_name =  $this->get_questiontype($res->type);
+           if(isset($type_name))
+           {
+                $res->type_name = $type_name;
+           }
+           $subtype_name =  $this->get_questiontype($res->subtype);
+           if(isset($subtype_name))
+           {
+                $res->subtype_name = $subtype_name;
+           }
+           
+          //$this->get_questiontype($res->subtype);
+           $result[] = $res;  
+        }
+       return $result;
     }
     
     function get_single($qid)
@@ -26,18 +42,44 @@ class QuestionModel extends CI_Model{
              return false;
         }
         $result = $res[0];
-        $result->typename = $this->get_questiontype($result->type);
-        $result->subtypename = $this->get_questiontype($result->subtype);
+        $type_name =  $this->get_questiontype($result->type);
+           if(isset($type_name))
+           {
+                $result->typename = $type_name;
+           }
+         $subtype_name =  $this->get_questiontype($result->subtype);
+           if(isset($subtype_name))
+           {
+                $result->subtypename = $subtype_name;
+           }
         return $result;
     }
-    
+        
     function get_questiontype($id)
     {
         $this->db->select('type');
         $this->db->from('question_type');
+        $this->db->where('id',$id);
         $query = $this->db->get();
         $result = $query->row();
+        if(isset($result->type))
         return $result->type;
+        else
+        return false;
+    }
+    
+        
+    function update_question($id,$data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('question_bank', $data); 
+        return true;
+    }
+    
+    function row_delete($qid)
+    {
+        $this->db->where('id', $qid);
+        $this->db->delete('question_bank'); 
     }
 }
 ?>

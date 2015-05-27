@@ -15,9 +15,7 @@
 <script src="<?php echo base_url();?>public/js/landerapp.min.js"></script>
 
 <script type="text/javascript">
-	init.push(function () {
-		// Javascript code here
-	})
+
 	window.LanderApp.start(init);
     jQuery("#jquery-select-type").on("change",function(){
 
@@ -56,6 +54,13 @@
                         });
                     });
           $(document).ready(function(){
+            $(".qdelete").click(function(){
+                 if (confirm("Are you sure want to delete?")) {
+                    return true;
+                }
+                return false;
+            });
+            
             $("#addmoreoption").click(function(){
                  var indexnumber = $(".choices_wrapper .form-group").length +1;		
                 var content = "<div class='form-group'><label for=\"jq-validation-choice4\" class=\"col-sm-3 control-label\">Choice <span class=\"indexno\">"+indexnumber+"</span></label>";

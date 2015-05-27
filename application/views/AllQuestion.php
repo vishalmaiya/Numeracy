@@ -1,7 +1,7 @@
 <div id="content-wrapper">
 
 		<div class="page-header">
-			<h1>Question Bank</h1>
+			<h1><a href="<?php echo site_url(); ?>all-questions/">Question Bank</a></h1>
 		</div> <!-- / .page-header -->
 
 <!-- 5. $FONT_AWESOME_ICONS =============================================================================
@@ -42,7 +42,7 @@
 
 				<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">All Questions</span>
+						<span class="panel-title"><a href="<?php echo site_url(); ?>all-questions/">All Questions</a></span>
 					</div>
 					<div class="panel-body">
 						<div class="table-primary">
@@ -73,10 +73,16 @@
                                   <tr class="<?php echo $class; ?> gradeX">
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $val->question; ?></td>
-										<td><?php echo $val->type; ?></td>
-										<td class="center"><?php echo $val->subtype; ?></td>
+										<td><?php echo $val->type_name; ?></td>
+										<td class="center"><?php echo $val->subtype_name; ?></td>
 										<td class="center"><?php echo $val->difficulty_level; ?></td>
-                                        <td><a href="<?php echo site_url();?>edit-question?qid=<?php echo $val->id;?>" class="btn btn-info btn-sm btn-outline" >Edit</a></td>
+                                        <td><a href="<?php echo site_url();?>edit-question?qid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >Edit</a>
+                                        <form method="post" action="">
+                                            <input type="hidden" name="qaction" value="delque"/>
+                                            <input type="hidden" name="qid" value="<?php echo $val->id; ?>"/>
+                                            <input type="submit" class="btn btn-danger btn-sm btn-outline qdelete" value="Delete"/>
+                                        </form>
+                                        </td>
 									</tr>
                                   <?php  
                                 }

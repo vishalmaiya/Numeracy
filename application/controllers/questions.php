@@ -18,6 +18,12 @@ class Questions extends CI_Controller {
 	public function index()
 	{
 	   $this->load->model('questionmodel');
+	   if(isset($_POST['qaction']) && $_POST['qaction'] == "delque")
+       {
+            $qid = $_POST['qid'];
+            $this->questionmodel->row_delete($qid);
+       }
+	   
        $results = $this->questionmodel->get_all();
        $data['results'] = $results;
        $data['body'] = 'AllQuestion';
@@ -28,23 +34,24 @@ class Questions extends CI_Controller {
     {
        //set validation rules
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('qtype', 'Question Type', 'trim|required|numeric');
+        $this->form_validation->set_rules('qtype', 'Question Type', 'required');
         $this->form_validation->set_rules('question', 'Question', 'required');
-        $this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
         $this->form_validation->set_rules('qanswer', 'Answer', 'required');
+        $this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
         
         if ($this->form_validation->run() == TRUE)
         {
           $data = array(
                 'type' => $this->input->post('qtype'),
+                'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
-                'answer' => $this->input->post('answer'),
+                'answer' => $this->input->post('qanswer'),
                 'difficulty_level' => $this->input->post('difficultylevel'),
                 );
           $this->load->model('questionmodel');
            $this->questionmodel->insert($data);
-           $data['message'] = 'Question Inserted Successfully';
+           $data['message'] = 'Question Added Successfully';
          }
           
        $this->load->model('questiontypemodel');
@@ -56,7 +63,7 @@ class Questions extends CI_Controller {
     
     function ajaxget_subtype()
     {
-        $parent_id = $_POST['parent_id'];
+        $parent_id = $_POST['parent_id'];        
         $this->load->model('questiontypemodel');
         $all_parents = $this->questiontypemodel->get_sub_type($parent_id);
         $result = json_encode($all_parents);
@@ -67,31 +74,61 @@ class Questions extends CI_Controller {
     
      public function edit_question()
     {
+        if(isset($_GET['qid']))
         $qid = $_GET['qid'];
-        if(isset($_GET['qid']) && $_GET['qid'] != "")
+        //set validation rules
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('qtype', 'Question Type', 'required');
+        $this->form_validation->set_rules('question', 'Question', 'required');
+        $this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
+        $this->form_validation->set_rules('qanswer', 'Answer', 'required');
+        
+        if ($this->form_validation->run() == TRUE)
         {
-            $this->load->model('questionmodel');
-            $squestion = $this->questionmodel->get_single($qid);
-            if(!$squestion)
+            $data = array(
+                'type' => $this->input->post('qtype'),
+                'subtype' => $this->input->post('qsubtype'),
+                'question' => $this->input->post('question'),
+                'option' =>  json_encode($this->input->post('choice')),
+                'answer' => $this->input->post('qanswer'),
+                'difficulty_level' => $this->input->post('difficultylevel'),
+                );
+          $this->load->model('questionmodel');
+          $qid = $this->input->post('qid');
+           $res = $this->questionmodel->update_question($qid,$data);
+           if($res)
+           $data['message'] = 'Question updated Successfully!';
+           else
+           $data['error_message'] = 'Error While updating Question';
+        }
+        
+        
+            if(isset($qid) && $qid != "")
             {
-                $data['error_message'] = "No Record Found";
+                
+                $this->load->model('questionmodel');
+                $squestion = $this->questionmodel->get_single($qid);
+                if(!is_object($squestion))
+                {
+                    $data['error_message'] = "No Record Found";
+                }
+                else
+                {
+                    $data['data'] = $squestion;
+                    $this->load->model('questiontypemodel');
+                    $data['all_parents'] = $this->questiontypemodel->get_parent_type();
+                    $data['all_childs'] = $this->questiontypemodel->get_sub_type($squestion->type); 
+                }   
+               
+                
+                $data['body'] = 'EditQuestion';
+                $this->load->view('template',$data); 
             }
             else
             {
-                $data['data'] = $squestion;
-                $this->load->model('questiontypemodel');
-                $data['all_parents'] = $this->questiontypemodel->get_parent_type();
-                $data['all_childs'] = $this->questiontypemodel->get_sub_type($squestion->id); 
-            }   
-           
-            
-            $data['body'] = 'EditQuestion';
-            $this->load->view('template',$data); 
-        }
-        else
-        {
-            redirect("all-questions");
-        }
+                redirect("all-questions");
+            }
+        
         
          
     }
