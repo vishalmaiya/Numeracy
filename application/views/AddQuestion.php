@@ -1,7 +1,7 @@
 <div id="content-wrapper">
 
 		<div class="page-header">
-			<h1><span class="text-light-gray"><a href="<?php site_url(); ?>all-questions">Question Bank</a>/ </span>Add Question</h1>
+			<h1><a href="<?php site_url(); ?>add-question">Add New Question</a></h1>
 		</div> <!-- / .page-header -->
 
 		<div class="row">
@@ -111,7 +111,7 @@
 					
 				<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Add Question</span>
+						<span class="panel-title">Add New Question</span>
 					</div>
 					<div class="panel-body">
 		      	<!-- / Javascript -->
@@ -154,6 +154,27 @@
                             </select>
     						</div>
     	                   </div>
+
+
+    	             <div class="form-group">
+								<label for="jq-validation-difficulty" class="col-sm-3 control-label">Difficulty Level</label>
+								<div class="col-sm-9">
+									<select class="form-control" id="jq-validation-difficulty" name="difficultylevel">
+										<option value="">Select Difficulty Level...</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+								</div>
+				        </div>
+
                         <div class="form-group">
 								<label for="jq-validation-question" class="col-sm-3 control-label">Question</label>
 								<div class="col-sm-9">
@@ -231,29 +252,12 @@
                             <label class="col-sm-3 control-label"> </label>
                             <div class="col-sm-9">
                             <a id="addmoreoption" class="btn btn-outline btn-md btn-labeled">
-                                <span class="btn-label icon fa fa-plus"></span>Add More Choice
+                                <span class="btn-label icon fa fa-plus"></span>Add More Choices
                             </a>
                             </div>
                         </div>
                       
-                        <div class="form-group">
-								<label for="jq-validation-difficulty" class="col-sm-3 control-label">Difficulty Level</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="jq-validation-difficulty" name="difficultylevel">
-										<option value="">Select Difficulty Level...</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-								</div>
-				        </div>
+                        
                                 
 						
 

@@ -4,7 +4,7 @@
                  echo validation_errors();
                 ?>
                     <div class="panel-heading">
-						<span class="panel-title">Add Question Type</span>
+						<span class="panel-title">Add New Question Type</span>
 					</div>
                     
 					<div class="panel-body no-padding-hr">

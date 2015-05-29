@@ -1,7 +1,7 @@
 <div id="content-wrapper">
 
 		<div class="page-header">
-			<h1><a href="<?php echo site_url(); ?>all-type/">Question Type</a></h1>
+			<h1><a href="<?php echo site_url(); ?>question-type">Manage Question Type</a></h1>
 		</div> <!-- / .page-header -->
 
 		<div class="row">
@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                    <div class="panel">
     					<div class="panel-heading">
-    						<span class="panel-title">All Type / Sub Type</span>
+    						<span class="panel-title">Question Type - Sub Type</span>
     					</div>
     					<div class="panel-body">
     						<table class="table table-hover">
