@@ -17,7 +17,6 @@
 								   <?php
                  $attributes = array('class' => 'panel form-horizontal form-bordered', 'id' => 'jq-validation-form');
                  echo form_open('',$attributes); 
-                 $err = validation_errors();
                  ?>    
 					<div class="panel-body no-padding-hr">
 						<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
@@ -42,7 +41,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
 					<div class="panel-footer text-right">
                         <input type="hidden" name="qparent" value="0"/>
                         <input type="hidden" name="taction" value="addtype"/>

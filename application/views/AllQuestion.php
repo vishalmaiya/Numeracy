@@ -1,7 +1,7 @@
 <div id="content-wrapper">
 
 		<div class="page-header">
-			<h1><a href="<?php echo site_url(); ?>all-questions/">Question Bank</a></h1>
+			<h1><a href="<?php echo site_url(); ?>all-questions/">Manage Question</a></h1>
 		</div> <!-- / .page-header -->
 
 <!-- 5. $FONT_AWESOME_ICONS =============================================================================
@@ -42,7 +42,7 @@
 
 				<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title"><a href="<?php echo site_url(); ?>all-questions/">All Questions</a></span>
+						<span class="panel-title"><a href="<?php echo site_url(); ?>all-questions/">Manage Question</a></span>
 					</div>
 					<div class="panel-body">
 						<div class="table-primary">

@@ -86,7 +86,7 @@ Use search to find needed section.
 
 				<!-- Logo -->
 				<a href="index.html" class="navbar-brand">
-					<strong>Numeracy</strong>App
+					<strong>Numeracy </strong>System
 				</a>
 
 				<!-- Main navbar toggle -->
@@ -208,23 +208,19 @@ Use search to find needed section.
 						<li <?php if(isset($questions))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>all-questions">
                             <i class="menu-icon fa fa-bars"></i>
-                            <span class="mm-text"></span>All Questions</a>
+                            <span class="mm-text"></span>Manage Question</a>
 						</li>
 						<li <?php if(isset($addquestion))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>add-question"><i class="menu-icon fa fa-plus"></i>
-                            <span class="mm-text">Add Question</span></a>
+                            <span class="mm-text">Add New Question</span></a>
 						</li>
 					</ul>
 				</li>
-                <li class="mm-dropdown <?php if(isset($alltype))echo "open"; ?>">
-					<a href="#"><i class="menu-icon fa fa-tasks"></i><span class="mm-text">Question Type</span></a>
-                    <ul>
-						<li <?php if(isset($types))echo "class='active'"; ?>>
-							<a tabindex="-1" href="<?php echo site_url(); ?>question-type">
-                            <i class="menu-icon fa fa-bars"></i>
-                            <span class="mm-text"></span>Question Types</a>
-						</li>
-					</ul>
+
+                <li <?php if(isset($types))echo "class='active'"; ?>>
+					<a tabindex="-1" href="<?php echo site_url(); ?>question-type">
+                    <i class="menu-icon fa fa-bars"></i>
+                    <span class="mm-text"></span>Manage Question Types</a>
 				</li>
 			
 			</ul> <!-- / .navigation -->
