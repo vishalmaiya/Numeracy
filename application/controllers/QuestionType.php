@@ -34,12 +34,17 @@ class QuestionType extends CI_Controller {
         if ($this->form_validation->run() == FALSE)
         {
             $all_parents = $this->questiontypemodel->get_parent_type();
-            foreach($all_parents as $parent)
+            $types = "";
+            if(!empty($all_parents))
             {
-                $all_subtypes = $this->questiontypemodel->get_sub_type($parent->id);
-                $parent->sub_type = $all_subtypes;
-                $types[]=$parent;
+               foreach($all_parents as $parent)
+                {
+                    $all_subtypes = $this->questiontypemodel->get_sub_type_with_question($parent->id);
+                    $parent->sub_type = $all_subtypes;
+                    $types[]=$parent;
+                } 
             }
+            
             $data['alltypes'] = $types;
             $data['content'] = "AddType";
             $data['body'] = 'AllType';
@@ -99,7 +104,7 @@ class QuestionType extends CI_Controller {
         $all_parents = $this->questiontypemodel->get_parent_type();
         foreach($all_parents as $parent)
         {   
-            $all_subtypes = $this->questiontypemodel->get_sub_type($parent->id);
+            $all_subtypes = $this->questiontypemodel->get_sub_type_with_question($parent->id);
             $parent->sub_type = $all_subtypes;
             $types[]=$parent;                
         }

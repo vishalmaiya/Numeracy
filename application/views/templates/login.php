@@ -72,14 +72,13 @@
 <script>
 	var init = [];
 </script>
-<!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
 
 	<!-- Page background -->
 	<div id="page-signin-bg">
 		<!-- Background overlay -->
 		<div class="overlay"></div>
 		<!-- Replace this with your bg image -->
-		<img src="assets/demo/signin-bg-1.jpg" alt="">
+		<img src="<?php echo site_url(); ?>public/img/bg.jpg" alt="">
 	</div>
 	<!-- / Page background -->
 

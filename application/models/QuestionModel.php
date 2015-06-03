@@ -31,7 +31,10 @@ class QuestionModel extends CI_Model{
           //$this->get_questiontype($res->subtype);
            $result[] = $res;  
         }
+        if(!empty($result))
        return $result;
+       else
+       return false;
     }
     
     function get_single($qid)

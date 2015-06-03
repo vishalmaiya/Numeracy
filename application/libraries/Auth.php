@@ -48,7 +48,7 @@ class Auth{
      {
          /* their username and password combination
          * were not found in the databse */
-         $this->form_validation->set_message('check_database', 'Invalid username or password');
+        // $this->form_validation->set_message('check_database', 'Invalid username or password');
          return false;
      }
      else

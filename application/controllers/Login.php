@@ -12,7 +12,7 @@ class Login extends CI_Controller {
         if($this->auth->logged_in())
         {
             //they are logged in
-            redirect('Dashbord');
+            redirect('all-questions');
         }
 	   
 	    $this->load->helper(array('form'));

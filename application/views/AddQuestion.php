@@ -1,7 +1,7 @@
 <div id="content-wrapper">
 
 		<div class="page-header">
-			<h1><span class="text-light-gray"><a href="<?php site_url(); ?>all-questions">Question Bank</a>/ </span>Add Question</h1>
+			<h1><span class="text-light-gray"><a href="<?php site_url(); ?>all-questions">Question Bank</a>/ </span><a href="<?php echo site_url(); ?>add-question" >Add Question</a></h1>
 		</div> <!-- / .page-header -->
 
 		<div class="row">
@@ -111,7 +111,7 @@
 					
 				<div class="panel">
 					<div class="panel-heading">
-						<span class="panel-title">Add Question</span>
+						<span class="panel-title"><a href="<?php echo site_url(); ?>add-question" >Add Question</a></span>
 					</div>
 					<div class="panel-body">
 		      	<!-- / Javascript -->

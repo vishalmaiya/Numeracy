@@ -66,7 +66,7 @@
                 var content = "<div class='form-group'><label for=\"jq-validation-choice4\" class=\"col-sm-3 control-label\">Choice <span class=\"indexno\">"+indexnumber+"</span></label>";
                     content += "<div class=\"col-sm-9\">";
                     content += "<span class=\"input-group-addon custome-ans\"><label class=\"px-single\">";
-                    content += "<input type=\"radio\" name=\"qanswer\" class=\"px\"><span class=\"lbl\"></span></label></span>";
+                    content += "<input type=\"radio\" name=\"qanswer\" class=\"px\" value='"+indexnumber+"'><span class=\"lbl\"></span></label></span>";
                     content += "<input type=\"text\" class=\"form-control custom-input\" id=\"jq-validation-choice4\" name=\"choice[]\" placeholder=\"Required\">";
                    // content += "";
                 $(".choices_wrapper").append(content+ "<span class=\"input-group-addon bg-danger no-border removeoption\"><a class=\"bg-danger\" href='javascript:void(0);' ><i class=\"fa fa-times\"></i></a></span></div></div>"); 

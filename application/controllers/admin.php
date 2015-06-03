@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
            }
            else
            {
-             redirect('Dashbord', 'refresh');
+             redirect('all-questions', 'refresh');
            }
 
     }
@@ -51,6 +51,8 @@ class Admin extends CI_Controller {
     
     function logout()
     {
+        echo "ok";
+        die;
         $this->session->userdata = array();
         $this->session->sess_destroy();
         redirect('admin', 'refresh');

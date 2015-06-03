@@ -59,6 +59,7 @@
 								</thead>
 								<tbody>
                                 <?php 
+                                if(is_array($results)){
                                 foreach($results as $key=>$val)
                                 {
                                     if($key%2 == 0)
@@ -86,6 +87,8 @@
 									</tr>
                                   <?php  
                                 }
+                                }
+                                
                                 ?>
 									
 								</tbody>

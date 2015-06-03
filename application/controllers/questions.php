@@ -32,6 +32,7 @@ class Questions extends CI_Controller {
     
     public function add_question()
     {
+        
        //set validation rules
         $this->load->library('form_validation');
         $this->form_validation->set_rules('qtype', 'Question Type', 'required');

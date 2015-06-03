@@ -22,7 +22,10 @@ class QuestionTypeModel extends CI_Model{
     {
         $this->db->select('*');
         $result = $this->db->get_where('question_type',array('parent_id'=>0))->result();
+        if($result)
         return $result;
+        else
+        return false;
     }
     
     function get_sub_type($parent_id)
@@ -31,7 +34,25 @@ class QuestionTypeModel extends CI_Model{
         $result = $this->db->get_where('question_type',array('parent_id'=>$parent_id))->result();
         return $result;
     }
-        function row_delete($qid)
+    
+    function get_sub_type_with_question($parent_id)
+    {
+        $this->db->select('*');
+        $res = $this->db->get_where('question_type',array('parent_id'=>$parent_id))->result();
+        $result = '';
+        foreach($res as $item)
+        {
+            $query = $this->db->query('SELECT * FROM question_bank where subtype = '.$item->id); 
+            $item->total_questions = $query->num_rows();
+            $result[] = $item;
+        }
+       
+    
+       // $question_count = $this->db->get_where('question_bank',array('parent_id'=>$parent_id))->result();
+        return $result;
+    }
+    
+    function row_delete($qid)
     {
         $this->db->where('id', $qid);
         $this->db->delete('question_type'); 

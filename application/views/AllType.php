@@ -17,21 +17,26 @@
     								<tr>
     									<th>#</th>
     									<th>Name</th>
+                                        <th>Questions</th>
                                         <th>Action</th>
     								</tr>
     							</thead>
     							<tbody>
                                     <?php
                                     $i = 1;
+                                    if(!empty($alltypes)){
                                      foreach($alltypes as $type)
                                         {
+                                            $subtypes = $type->sub_type;
                                             ?>
                                             <tr>
             									<td><strong><?php echo $i++; ?></strong></td>
             									<td><strong><?php echo $type->type; ?></strong></td>
+                                                <td></td>
                                                 <td>
                                                 <span style="float: left;">
                                                     <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $type->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Edit</a>&nbsp;</span> 
+                                                <?php if(empty($subtypes)): ?>
                                                  <span style="float: left;">
                                                   <form method="post" action="">
                                                         <input type="hidden" name="qtype" value="deltype"/>
@@ -39,10 +44,10 @@
                                                         <input type="submit" class="btn btn-danger btn-sm btn-outline qdelete" value="Delete"/>
                                                   </form>
                                                   </span>
+                                                  <?php endif; ?>
                                         </td>
             								</tr>
                                             <?php
-                                            $subtypes = (array)$type->sub_type;
                                             if (!empty($subtypes))
                                             {
                                                 foreach($type->sub_type as $subtype):
@@ -50,21 +55,26 @@
                                                 <tr>
                 									<td></td>
          									        <td>- <?php echo $subtype->type; ?></td>
+                                                    <td><?php echo $subtype->total_questions; ?></td>
                                                     <td>
                                                         <span style="float: left;">
                                                             <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $subtype->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Edit</a>&nbsp;</span> 
+                                                        <?php if($subtype->total_questions == 0): ?>
                                                         <span style="float: left;">
+                                                        
                                                         <form method="post" action="">
                                                             <input type="hidden" name="qtype" value="deltype"/>
                                                             <input type="hidden" name="tid" value="<?php echo $subtype->id; ?>"/>
                                                             <input type="submit" class="btn btn-danger btn-sm btn-outline qdelete" value="Delete"/>
                                                          </form>
                                                          </span>
+                                                         <?php endif; ?>
                                                   </td>
             								    </tr>
                                                 <?php
                                                 endforeach;
                                             }
+                                        }
                                         }
                                         ?>
     							</tbody>
