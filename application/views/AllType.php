@@ -9,7 +9,7 @@
             <div class="col-sm-6">
                    <div class="panel">
     					<div class="panel-heading">
-    						<span class="panel-title">Question Type - Sub Type</span>
+    						<span class="panel-title">Question Type / Sub-type</span>
     					</div>
     					<div class="panel-body">
     						<table class="table table-hover">
@@ -35,7 +35,7 @@
                                                 <td></td>
                                                 <td>
                                                 <span style="float: left;">
-                                                    <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $type->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Edit</a>&nbsp;</span> 
+                                                    <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $type->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Rename</a>&nbsp;</span> 
                                                 <?php if(empty($subtypes)): ?>
                                                  <span style="float: left;">
                                                   <form method="post" action="">
@@ -58,7 +58,7 @@
                                                     <td><?php echo $subtype->total_questions; ?></td>
                                                     <td>
                                                         <span style="float: left;">
-                                                            <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $subtype->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Edit</a>&nbsp;</span> 
+                                                            <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $subtype->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Rename</a>&nbsp;</span> 
                                                         <?php if($subtype->total_questions == 0): ?>
                                                         <span style="float: left;">
                                                         

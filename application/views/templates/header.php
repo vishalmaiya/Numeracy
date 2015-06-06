@@ -86,7 +86,7 @@ Use search to find needed section.
 
 				<!-- Logo -->
 				<a href="index.html" class="navbar-brand">
-					<strong>Numeracy </strong>System
+					<strong>Assessment </strong>System
 				</a>
 
 				<!-- Main navbar toggle -->
@@ -96,8 +96,6 @@ Use search to find needed section.
 
 			<div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
 				<div>
-					
-
 					<div class="right clearfix">
 						<ul class="nav navbar-nav pull-right right-navbar-nav">
 
@@ -200,28 +198,30 @@ Use search to find needed section.
             } ?>
 			<ul class="navigation">
 				<li>
-					<a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
+					<a href="#"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
 				</li>
 				<li class="mm-dropdown <?php if(isset($allquestion))echo "open"; ?>">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Question Bank</span></a>
 					<ul>
 						<li <?php if(isset($questions))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>all-questions">
-                            <i class="menu-icon fa fa-bars"></i>
-                            <span class="mm-text"></span>Manage Question</a>
+                            <i class="menu-icon fa fa-gears
+                            "></i>
+                            <span class="mm-text"></span>Manage/List Questions</a>
 						</li>
 						<li <?php if(isset($addquestion))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>add-question"><i class="menu-icon fa fa-plus"></i>
-                            <span class="mm-text">Add New Question</span></a>
+                            <span class="mm-text">Add New Questions</span></a>
 						</li>
+                        <li <?php if(isset($types))echo "class='active'"; ?>>
+    					<a tabindex="-1" href="<?php echo site_url(); ?>question-type">
+                        <i class="menu-icon fa fa-bars"></i>
+                        <span class="mm-text"></span>Question Types</a>
+    			     	</li>
 					</ul>
 				</li>
 
-                <li <?php if(isset($types))echo "class='active'"; ?>>
-					<a tabindex="-1" href="<?php echo site_url(); ?>question-type">
-                    <i class="menu-icon fa fa-bars"></i>
-                    <span class="mm-text"></span>Manage Question Types</a>
-				</li>
+                
 			
 			</ul> <!-- / .navigation -->
 			

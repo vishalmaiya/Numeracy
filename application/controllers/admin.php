@@ -51,8 +51,6 @@ class Admin extends CI_Controller {
     
     function logout()
     {
-        echo "ok";
-        die;
         $this->session->userdata = array();
         $this->session->sess_destroy();
         redirect('admin', 'refresh');

@@ -62,7 +62,15 @@
             });
             
             $("#addmoreoption").click(function(){
-                 var indexnumber = $(".choices_wrapper .form-group").length +1;		
+                var indexnumber = $(".choices_wrapper .form-group").length +1;	
+                if(indexnumber >= 10)
+                {
+                    jQuery("#addmorechoices").hide();
+                }
+                else
+                {
+                    jQuery("#addmorechoices").show();
+                }
                 var content = "<div class='form-group'><label for=\"jq-validation-choice4\" class=\"col-sm-3 control-label\">Choice <span class=\"indexno\">"+indexnumber+"</span></label>";
                     content += "<div class=\"col-sm-9\">";
                     content += "<span class=\"input-group-addon custome-ans\"><label class=\"px-single\">";
@@ -72,6 +80,16 @@
                 $(".choices_wrapper").append(content+ "<span class=\"input-group-addon bg-danger no-border removeoption\"><a class=\"bg-danger\" href='javascript:void(0);' ><i class=\"fa fa-times\"></i></a></span></div></div>"); 
             });
             $(document).on("click", ".removeoption" , function() {
+                var indexnumber = $(".choices_wrapper .form-group").length;
+                
+                if(indexnumber > 10)
+                {
+                    jQuery("#addmorechoices").hide();
+                }
+                else
+                {
+                    jQuery("#addmorechoices").show();
+                }
                 $(this).closest(".form-group").remove();
                 $( ".choices_wrapper .form-group .indexno" ).each(function( index ) {
                   console.log( ++index + ": " + $( this ).text() );

@@ -1,7 +1,7 @@
 <div id="content-wrapper">
 
 		<div class="page-header">
-			<h1><a href="<?php echo site_url(); ?>all-questions/">Manage Question</a></h1>
+			<h1><a href="<?php echo site_url(); ?>all-questions/">Question Bank</a></h1>
 		</div> <!-- / .page-header -->
 
 <!-- 5. $FONT_AWESOME_ICONS =============================================================================
@@ -34,17 +34,14 @@
 				<script>
 					init.push(function () {
 						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('Questions');
+						$('#jq-datatables-example_wrapper .table-caption').text('Manage Questions');
 						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 					});
 				</script>
 				<!-- / Javascript -->
 
 				<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title"><a href="<?php echo site_url(); ?>all-questions/">Manage Question</a></span>
-					</div>
-					<div class="panel-body">
+					
 						<div class="table-primary">
 							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="jq-datatables-example">
 								<thead>
@@ -94,8 +91,7 @@
 								</tbody>
 							</table>
 						</div>
-					</div>
-				</div>
+					
 <!-- /11. $JQUERY_DATA_TABLES -->
 
 		</div>

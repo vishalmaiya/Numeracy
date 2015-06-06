@@ -15,7 +15,7 @@ class Dashbord extends CI_Controller {
             //they are not logged in
             redirect("admin/login");  //for example
         }
-	    $data['body'] = 'index';
+	    $data['body'] = 'dashboard';
         $this->load->view('template',$data);
 	}
 }

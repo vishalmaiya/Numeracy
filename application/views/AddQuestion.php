@@ -219,6 +219,7 @@
                                             <input type="radio" name="qanswer" value="<?php echo $i; ?>" class="px"/><span class="lbl"></span></label>
         							 </span>
                                     <input type="text" value="<?php echo $option; ?>" class="form-control custom-input" id="jq-validation-choice1" name="choice[]" placeholder="Required">
+                                    
                                     <?php
                                 }
                                 $i++;
@@ -237,7 +238,7 @@
             							<label for="jq-validation-choice1" class="col-sm-3 control-label">Choice <span class="indexno"><?php echo $i; ?></span></label>
             							<div class="col-sm-9">
                                                 <span class="input-group-addon custome-ans">
-                    								<label class="px-single"><input type="radio" id="qanswer" name="qanswer" class="px" value="<?php echo $i-1; ?>"><span class="lbl"></span></label>
+                    								<label class="px-single"><input type="radio" id="qanswer" name="qanswer" class="px" value="<?php echo $i; ?>"><span class="lbl"></span></label>
                     							 </span>
                                                 <input type="text" class="form-control custom-input" name="choice[]" placeholder="Required" />
             							</div>
@@ -249,11 +250,11 @@
                         ?>
                           </div>                      
 
-                        <div class="form-group">
+                        <div class="form-group" id="addmorechoices">
                             <label class="col-sm-3 control-label"> </label>
                             <div class="col-sm-9">
                             <a id="addmoreoption" class="btn btn-outline btn-md btn-labeled">
-                                <span class="btn-label icon fa fa-plus"></span>Add More Choices
+                                <span class="btn-label icon fa fa-plus"></span>Add A Choice
                             </a>
                             </div>
                         </div>
@@ -265,6 +266,7 @@
 							<div class="form-group">
 								<div class="col-sm-offset-3 col-sm-9">
 									<input type="submit" class="btn btn-primary" value="Add Question" />
+                                    <input type="reset" class="btn btn-default" value="Cancel" />
 								</div>
 							</div>
 						</form>

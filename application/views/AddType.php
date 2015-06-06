@@ -17,13 +17,14 @@
 								   <?php
                  $attributes = array('class' => 'panel form-horizontal form-bordered', 'id' => 'jq-validation-form');
                  echo form_open('',$attributes); 
+                  $err = validation_errors();
                  ?>    
 					<div class="panel-body no-padding-hr">
 						<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
                          <?php if(isset($err) && $err != ''): ?>
                     <div class="alert alert-danger">
 							<button type="button" class="close" data-dismiss="alert">X</button>
-							<?php echo validation_errors(); ?>
+							<?php echo $err; ?>
                     </div>
                    <?php endif; ?> 
                         <?php if(isset($message) && $message != "")
@@ -45,21 +46,23 @@
                         <input type="hidden" name="qparent" value="0"/>
                         <input type="hidden" name="taction" value="addtype"/>
 						<input type="submit" class="btn btn-primary" value="Submit"/>
+                        <input type="reset" class="btn btn-default" value="Cancel"/>
 					</div>
 				</form>
 							</div> <!-- / .tab-pane -->
+                            </div>
 							<div class="tab-pane fade" id="uidemo-tabs-default-demo-subtype">
 								   <?php
                  $attributes = array('class' => 'panel form-horizontal', 'id' => 'jq-validation-form');
                  echo form_open('',$attributes); 
-                  $err = validation_errors();
+                  $subtypeerr = validation_errors();
                 ?>
 					<div class="panel-body no-padding-hr">
 						<div class="form-group no-margin-hr panel-padding-h no-padding-t no-border-t">
-                        <?php if(isset($err) && $err != ''): ?>
+                        <?php if(isset($subtypeerr) && $subtypeerr != ''): ?>
                     <div class="alert alert-danger">
 							<button type="button" class="close" data-dismiss="alert">X</button>
-							<?php echo validation_errors(); ?>
+							<?php echo $subtypeerr; ?>
                     </div>
                    <?php endif; ?> 
                         <?php if(isset($message) && $message != "")
@@ -96,11 +99,12 @@
 					<div class="panel-footer text-right">
                         <input type="hidden" name="taction" value="addtype"/>
 						<input type="submit" class="btn btn-primary" value="Submit"/>
+                        <input type="reset" class="btn btn-default" value="Cancel"/>
 					</div>
 				</form>
 							</div> <!-- / .tab-pane -->
 						</div> <!-- / .tab-content -->
 					</div>
-                 
+                
                     
                     
