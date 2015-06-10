@@ -96,6 +96,15 @@
                 $(this).text(index);
                 });
             });
+            
+            jQuery(".choose_wrapper .sel_que").click(function(){ 
+    
+                if(this.checked) {
+                 var selval = jQuery(this).closest("tr").addClass( "active_tupple" );
+            } else {
+                 var selval = jQuery(this).closest("tr").removeClass("active_tupple" );
+            }
+             });
         });
 </script>
 

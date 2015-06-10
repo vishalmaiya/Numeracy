@@ -60,3 +60,8 @@ $route['add-question'] = "questions/add_question";
 $route['edit-question'] = "questions/edit_question";
 $route['question-type'] = "questiontype/all_type";
 $route['edit-type'] = "questiontype/edit_type";
+$route['all-exam'] = "exam";
+$route['add-exam'] = "exam/add_exam";
+$route['edit-exam'] = "exam/edit_exam";
+$route['exam-status'] = "exam/exam_status";
+

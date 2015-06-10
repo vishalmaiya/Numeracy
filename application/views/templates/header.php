@@ -1,31 +1,4 @@
 <!DOCTYPE html>
-<!--
-
-TABLE OF CONTENTS.
-
-Use search to find needed section.
-
-===================================================================
-
-|  1. $BODY                        |  Body                        |
-|  2. $MAIN_NAVIGATION             |  Main navigation             |
-|  3. $NAVBAR_ICON_BUTTONS         |  Navbar Icon Buttons         |
-|  4. $MAIN_MENU                   |  Main menu                   |
-|  5. $UPLOADS_CHART               |  Uploads chart               |
-|  6. $EASY_PIE_CHARTS             |  Easy Pie charts             |
-|  7. $EARNED_TODAY_STAT_PANEL     |  Earned today stat panel     |
-|  8. $RETWEETS_GRAPH_STAT_PANEL   |  Retweets graph stat panel   |
-|  9. $UNIQUE_VISITORS_STAT_PANEL  |  Unique visitors stat panel  |
-|  10. $SUPPORT_TICKETS            |  Support tickets             |
-|  11. $RECENT_ACTIVITY            |  Recent activity         |
-|  12. $NEW_USERS_TABLE            |  New users table             |
-|  13. $RECENT_TASKS               |  Recent tasks                |
-
-===================================================================
-
--->
-
-
 <!--[if IE 8]>         <html class="ie8"> <![endif]-->
 <!--[if IE 9]>         <html class="ie9 gt-ie8"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="gt-ie8 gt-ie9 not-ie"> <!--<![endif]-->
@@ -50,21 +23,6 @@ Use search to find needed section.
 		<script src="assets/javascripts/ie.min.js"></script>
 	<![endif]-->
 </head>
-
-
-<!-- 1. $BODY ======================================================================================
-	
-	Body
-
-	Classes:
-	* 'theme-{THEME NAME}' - {dust,asphalt,silver,clean }
-	* 'right-to-left'      - Sets text direction to right-to-left
-	* 'main-menu-right'    - Places the main menu on the right side
-	* 'no-main-menu'       - Hides the main menu
-	* 'main-navbar-fixed'  - Fixes the main navigation
-	* 'main-menu-fixed'    - Fixes the main menu
-	* 'main-menu-animated' - Animate main menu
--->
 <body class="theme-asphalt  main-menu-animated">
 
 <script>var init = [];</script>
@@ -85,8 +43,8 @@ Use search to find needed section.
 			<div class="navbar-header">
 
 				<!-- Logo -->
-				<a href="index.html" class="navbar-brand">
-					<strong>Assessment </strong>System
+				<a href="" class="navbar-brand">
+					<strong>Numeracy</strong> Assessment
 				</a>
 
 				<!-- Main navbar toggle -->
@@ -98,22 +56,7 @@ Use search to find needed section.
 				<div>
 					<div class="right clearfix">
 						<ul class="nav navbar-nav pull-right right-navbar-nav">
-
-<!-- 3. $NAVBAR_ICON_BUTTONS =======================================================================
-
-							Navbar Icon Buttons
-
-							NOTE: .nav-icon-btn triggers a dropdown menu on desktop screens only. On small screens .nav-icon-btn acts like a hyperlink.
-
-							Classes:
-							* 'nav-icon-btn-info'
-							* 'nav-icon-btn-success'
-							* 'nav-icon-btn-warning'
-							* 'nav-icon-btn-danger' 
--->
-						
-
-							<li class="dropdown">
+                            <li class="dropdown">
 								<a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
 									<img src="<?php echo base_url();?>public/img/avatar/default_avatar.jpg" alt="">
 									<span>Admin</span>
@@ -133,29 +76,6 @@ Use search to find needed section.
 <!-- /2. $END_MAIN_NAVIGATION -->
 
 
-<!-- 4. $MAIN_MENU =================================================================================
-
-		Main menu
-		
-		Notes:
-		* to make the menu item active, add a class 'active' to the <li>
-		  example: <li class="active">...</li>
-		* multilevel submenu example:
-			<li class="mm-dropdown">
-			  <a href="#"><span class="mm-text">Submenu item text 1</span></a>
-			  <ul>
-				<li>...</li>
-				<li class="mm-dropdown">
-				  <a href="#"><span class="mm-text">Submenu item text 2</span></a>
-				  <ul>
-					<li>...</li>
-					...
-				  </ul>
-				</li>
-				...
-			  </ul>
-			</li>
--->
 	<div id="main-menu" role="navigation">
 		<div id="main-menu-inner">
 			<div class="menu-content top" id="menu-content-demo">
@@ -173,7 +93,6 @@ Use search to find needed section.
 				</div>
 			</div>
             <?php
-            echo $body;
             switch($body)
             {
                 case "AddQuestion":
@@ -190,8 +109,35 @@ Use search to find needed section.
                 break;
                 case "AllType":
                 {
+                    echo $content;
+                    if($content == "Editshow" || $content == "EditType")
+                    {
+                         $edittypes = true;
+                    }
+                    else
+                    {
+                         $addtypes = true;
+                    }
                     $alltype = true;
-                    $types = true;
+                   
+                }
+                break;
+                case "AllExam":
+                {
+                    $exammenu = true;
+                    $allexam = true;
+                }
+                break;
+                case "AddExam":
+                {
+                    $exammenu = true;
+                    $addexam = true;
+                }
+                break;
+                case "ExamStatus":
+                {
+                    $exammenu = true;
+                    $estatus = true;
                 }
                 break;
                 
@@ -213,17 +159,43 @@ Use search to find needed section.
 							<a tabindex="-1" href="<?php echo site_url(); ?>add-question"><i class="menu-icon fa fa-plus"></i>
                             <span class="mm-text">Add New Questions</span></a>
 						</li>
-                        <li <?php if(isset($types))echo "class='active'"; ?>>
-    					<a tabindex="-1" href="<?php echo site_url(); ?>question-type">
-                        <i class="menu-icon fa fa-bars"></i>
-                        <span class="mm-text"></span>Question Types</a>
-    			     	</li>
 					</ul>
 				</li>
-
+                <li class="mm-dropdown <?php if(isset($alltype))echo "open"; ?>">
+					<a href="#"><i class="menu-icon fa fa-gears"></i><span class="mm-text">Manage Question Type</span></a>
+					<ul>
+						 <li <?php if(isset($addtypes))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>question-type">
+                            <i class="menu-icon fa fa-plus"></i>
+                            <span class="mm-text"></span>Add Type / Sub-type</a>
+						</li>
+						<li <?php if(isset($edittypes))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>edit-type"><i class="menu-icon fa fa-gears"></i>
+                            <span class="mm-text">Rename Type / Sub - type</span></a>
+						</li>
+                        
+					</ul>
+				</li>
+                <li class="mm-dropdown <?php if(isset($exammenu))echo "open"; ?>">
+					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Test Manager</span></a>
+					<ul>
+						<li <?php if(isset($allexam))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>all-exam">
+                            <i class="menu-icon fa fa-gears"></i>
+                            <span class="mm-text"></span>All Test</a>
+						</li>
+						<li <?php if(isset($addexam))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>add-exam"><i class="menu-icon fa fa-plus"></i>
+                            <span class="mm-text">Add New Test</span></a>
+						</li>
+                        <li <?php if(isset($estatus))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>exam-status"><i class="menu-icon fa fa-plus"></i>
+                            <span class="mm-text">Exam Status</span></a>
+						</li>
+					</ul>
+				</li>
                 
-			
-			</ul> <!-- / .navigation -->
+            </ul> <!-- / .navigation -->
 			
 		</div> <!-- / #main-menu-inner -->
 	</div> <!-- / #main-menu -->

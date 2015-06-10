@@ -30,62 +30,49 @@ class QuestionType extends CI_Controller {
         if(isset($_POST['taction']) && $_POST['taction'] == "addtype")
         {
             $this->form_validation->set_rules('qtype', 'Question Type', 'required');    
-        }
-        if ($this->form_validation->run() == FALSE)
+        if ($this->form_validation->run() == TRUE)
         {
+           $data = array(
+                'type' => $this->input->post('qtype'),
+                'parent_id' => $this->input->post('qparent'),
+                );
+            $this->questiontypemodel->insert($data); 
+            $data['message'] = 'Record Inserted Successfully';
+        }
+        }
+            
+            $this->load->model('questiontypemodel');
             $all_parents = $this->questiontypemodel->get_parent_type();
-            $types = "";
-            if(!empty($all_parents))
-            {
-               foreach($all_parents as $parent)
-                {
-                    $all_subtypes = $this->questiontypemodel->get_sub_type_with_question($parent->id);
-                    $parent->sub_type = $all_subtypes;
-                    $types[]=$parent;
-                } 
+            foreach($all_parents as $parent)
+            {   
+                $all_subtypes = $this->questiontypemodel->get_sub_type_with_question($parent->id);
+                $parent->sub_type = $all_subtypes;
+                $types[]=$parent;                
             }
             
             $data['alltypes'] = $types;
             $data['content'] = "AddType";
             $data['body'] = 'AllType';
             $this->load->view('template',$data);
-        }
-        else
-        {
-            $data = array(
-                'type' => $this->input->post('qtype'),
-                'parent_id' => $this->input->post('qparent'),
-                );
-            $this->questiontypemodel->insert($data);
-            $this->load->model('questiontypemodel');
-            $all_parents = $this->questiontypemodel->get_parent_type();
-            foreach($all_parents as $parent)
-            {   
-                $all_subtypes = $this->questiontypemodel->get_sub_type($parent->id);
-                $parent->sub_type = $all_subtypes;
-                $types[]=$parent;                
-            }
-            $data['message'] = 'Record Inserted Successfully';
-            $data['alltypes'] = $types;
-            $data['content'] = "AddType";
-            $data['body'] = 'AllType';
-            $this->load->view('template',$data);
-        }  
+       
     }
     
     function insert_type()
     {
         
     }
-        
+    
     function edit_type()
     {
-        if(!isset($_GET['tid']))
-        {
-            redirect("question-type");
-            exit;
-        }
-      $tid = $_GET['tid'];
+        // if($_GET['tid'] == null)
+        // {
+        //     redirect("question-type");
+        //     exit;
+        // }
+
+      //check function
+      if (isset($_GET['tid']) ){
+        $tid = $_GET['tid'];
         $this->load->library('form_validation');
         if(isset($_POST['taction']) && $_POST['taction'] == "edittype")
         {
@@ -101,20 +88,35 @@ class QuestionType extends CI_Controller {
             $data['message'] = 'Record updated Successfully';
         }
         
-        $all_parents = $this->questiontypemodel->get_parent_type();
+        
+        $singlerecord = $this->questiontypemodel->get_single($tid);
+        $data['single_record'] = $singlerecord;
+        
+        $data['content'] = "EditType";
+
+
+  
+      }
+      else
+      {
+        $data['content'] = 'Editshow';
+      }
+
+
+      $all_parents = $this->questiontypemodel->get_parent_type();
         foreach($all_parents as $parent)
         {   
             $all_subtypes = $this->questiontypemodel->get_sub_type_with_question($parent->id);
             $parent->sub_type = $all_subtypes;
             $types[]=$parent;                
         }
-        $singlerecord = $this->questiontypemodel->get_single($tid);
-        $data['single_record'] = $singlerecord;
         $data['alltypes'] = $types;
-        $data['content'] = "EditType";
         $data['body'] = 'AllType';
         $this->load->view('template',$data);
     } 
+    
+        
+
     
     
     

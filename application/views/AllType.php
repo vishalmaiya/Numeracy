@@ -23,19 +23,26 @@
     							</thead>
     							<tbody>
                                     <?php
+                                    
                                     $i = 1;
                                     if(!empty($alltypes)){
                                      foreach($alltypes as $type)
                                         {
                                             $subtypes = $type->sub_type;
+                                            
                                             ?>
                                             <tr>
             									<td><strong><?php echo $i++; ?></strong></td>
             									<td><strong><?php echo $type->type; ?></strong></td>
                                                 <td></td>
                                                 <td>
+                                                 <?php 
+                                                    if($content != "AddType") {  ?>
+
                                                 <span style="float: left;">
                                                     <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $type->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Rename</a>&nbsp;</span> 
+                                                
+                                                   <?php } ?>         
                                                 <?php if(empty($subtypes)): ?>
                                                  <span style="float: left;">
                                                   <form method="post" action="">
@@ -50,18 +57,27 @@
                                             <?php
                                             if (!empty($subtypes))
                                             {
-                                                foreach($type->sub_type as $subtype):
+                                                foreach($type->sub_type as $subtype): 
                                                 ?>
                                                 <tr>
                 									<td></td>
          									        <td>- <?php echo $subtype->type; ?></td>
-                                                    <td><?php echo $subtype->total_questions; ?></td>
                                                     <td>
+                                                     <?php 
+                                                     if($subtype->total_questions != 0){ ?>
+                                                        
+                                                    <a href="<?php echo site_url(); ?>all-questions?sid=<?php echo $subtype->id; ?>" target="_blank" title="View <?php echo $subtype->type; ?> Questions"> <?php echo $subtype->total_questions; ?></a>
+                                                    <?php } else{ 
+                                                      echo $subtype->total_questions; 
+                                                    } ?>
+                                                    <td>
+                                                         <?php
+                                                        if($content != "AddType") { ?>
                                                         <span style="float: left;">
                                                             <a href="<?php echo site_url(); ?>edit-type?tid=<?php echo $subtype->id; ?>" class="btn btn-labeled  btn-sm btn-outline">Rename</a>&nbsp;</span> 
+                                                        <?php } ?>
                                                         <?php if($subtype->total_questions == 0): ?>
                                                         <span style="float: left;">
-                                                        
                                                         <form method="post" action="">
                                                             <input type="hidden" name="qtype" value="deltype"/>
                                                             <input type="hidden" name="tid" value="<?php echo $subtype->id; ?>"/>

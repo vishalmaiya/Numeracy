@@ -23,8 +23,14 @@ class Questions extends CI_Controller {
             $qid = $_POST['qid'];
             $this->questionmodel->row_delete($qid);
        }
-	   
-       $results = $this->questionmodel->get_all();
+       if (isset($_GET['sid']) ){
+        $sid = $_GET['sid'];
+       $results = $this->questionmodel->get_selected($sid);
+       }
+       else{
+       $results = $this->questionmodel->get_all_withexam();
+      }
+      
        $data['results'] = $results;
        $data['body'] = 'AllQuestion';
        $this->load->view('template',$data);
@@ -32,7 +38,6 @@ class Questions extends CI_Controller {
     
     public function add_question()
     {
-        
        //set validation rules
         $this->load->library('form_validation');
         $this->form_validation->set_rules('qtype', 'Question Type', 'required');

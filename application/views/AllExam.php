@@ -1,7 +1,7 @@
-<div id="content-wrapper">
+hi<div id="content-wrapper">
 
 		<div class="page-header">
-			<h1><a href="<?php echo site_url(); ?>all-questions/">Question Bank</a></h1>
+			<h1><a href="<?php echo site_url(); ?>all-questions/">Test Manager</a></h1>
 		</div> <!-- / .page-header -->
 
 
@@ -11,7 +11,7 @@
 				<script>
 					init.push(function () {
 						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('Manage Questions');
+						$('#jq-datatables-example_wrapper .table-caption').text('Manage Test');
 						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 					});
 				</script>
@@ -24,11 +24,8 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Question</th>
+										<th>Test Name</th>
 										<th>Type</th>
-										<th>Sub Type</th>
-										<th>Difficulty Level</th>
-                                        <th>Exam</th>
                                         <th>Action</th>
 									</tr>
 								</thead>
@@ -48,30 +45,20 @@
                                   ?>
                                   <tr class="<?php echo $class; ?> gradeX">
 										<td><?php echo $key+1; ?></td>
-										<td><?php echo $val->question; ?></td>
-										<td><?php echo $val->type_name; ?></td>
-										<td class="center"><?php echo $val->subtype_name; ?></td>
-										<td class="center"><?php echo $val->difficulty_level; ?></td>
-                                        <td><?php 
-                                        $tcount = 0;
-                                        if(!empty($val->tests))
+										<td><?php echo $val->name; ?></td>
+										<td><?php if($val->test_type == 1)
                                         {
-                                            foreach($val->tests as $t)
-                                            {$tcount++;
-                                            $tid = $t['test_id'];
-                                            $tname = $t['test_name'];
-                                                echo "- <a href='".site_url()."edit-exam?tid=$tid' target='_blank'>".$tname."</a><br/>";
-                                            }
-                                        }
-                                         ?></td>
-                                        <td><a href="<?php echo site_url();?>edit-question?qid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >Edit</a>
-                                        <?php if($tcount == 0){ ?> 
+                                            echo "Type 1";
+                                        } else
+                                        {
+                                            echo "Type 2";
+                                        } ?></td>
+                                        <td><a href="<?php echo site_url();?>edit-exam?tid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >Edit</a>
                                         <form method="post" action="">
                                             <input type="hidden" name="qaction" value="delque"/>
                                             <input type="hidden" name="qid" value="<?php echo $val->id; ?>"/>
                                             <input type="submit" class="btn btn-danger btn-sm btn-outline qdelete" value="Delete"/>
                                         </form>
-                                        <?php } ?>
                                         </td>
 									</tr>
                                   <?php  

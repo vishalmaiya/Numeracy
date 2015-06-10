@@ -36,6 +36,100 @@ class QuestionModel extends CI_Model{
        else
        return false;
     }
+        function get_selected($sid)
+    {
+        $this->db->select('*');
+        $this->db->from('question_bank');
+        $this->db->where(array('subtype' => $sid ));
+        $query = $this->db->get();
+        $data = $query->result();
+        foreach($data as $res)
+        {
+           $type_name =  $this->get_questiontype($res->type);
+           if(isset($type_name))
+           {
+                $res->type_name = $type_name;
+           }
+           $subtype_name =  $this->get_questiontype($res->subtype);
+           if(isset($subtype_name))
+           {
+                $res->subtype_name = $subtype_name;
+           }
+            $this->db->select('*');
+           $this->db->from('test');
+           $query = $this->db->get();
+           $testres = $query->result();
+           if(!empty($testres))
+           {
+                foreach($testres as $test)
+                {
+                    $options = json_decode($test->question_ids);
+                    foreach($options as $opt)
+                    {
+                        if($opt == $res->id)
+                        {
+                            $test_names[] = array("test_id"=>$test->id,"test_name"=>$test->name);
+                        }
+                    }   
+                }
+                 $res->tests = $test_names;
+                 $test_names = '';
+             }
+           
+          //$this->get_questiontype($res->subtype);
+           $result[] = $res;  
+        }
+        if(!empty($result))
+       return $result;
+       else
+       return false;
+    }
+    function get_all_withexam()
+    {
+        $this->db->select('*');
+        $this->db->from('question_bank');
+        $query = $this->db->get();
+        $data = $query->result();
+        foreach($data as $res)
+        {
+           $type_name =  $this->get_questiontype($res->type);
+           if(isset($type_name))
+           {
+                $res->type_name = $type_name;
+           }
+           $subtype_name =  $this->get_questiontype($res->subtype);
+           if(isset($subtype_name))
+           {
+                $res->subtype_name = $subtype_name;
+           }
+           $this->db->select('*');
+           $this->db->from('test');
+           $query = $this->db->get();
+           $testres = $query->result();
+           if(!empty($testres))
+           {
+                foreach($testres as $test)
+                {
+                    $options = json_decode($test->question_ids);
+                    foreach($options as $opt)
+                    {
+                        if($opt == $res->id)
+                        {
+                            $test_names[] = array("test_id"=>$test->id,"test_name"=>$test->name);
+                        }
+                    }   
+                }
+                 $res->tests = $test_names;
+                 $test_names = '';
+             }
+          //$this->get_questiontype($res->subtype);
+           $result[] = $res;  
+        }
+        if(!empty($result))
+       return $result;
+       else
+       return false;
+    }
     
     function get_single($qid)
     {
