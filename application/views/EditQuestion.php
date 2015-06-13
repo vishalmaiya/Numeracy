@@ -84,7 +84,7 @@
             echo form_open('edit-question?qid='.$_GET['qid'],$attributes); ?>
             <!-- / Javascript -->
 	         
-                <div class="form-group">
+               <!--  <div class="form-group">
                     <label for="jq-select-type" class="col-sm-3 control-label">Question Type</label>
 	                <div class="col-sm-9">
 	                   <select id="jquery-select-type" class="form-control" name="qtype">
@@ -144,7 +144,7 @@
                                     ?>
                                 </select>
 							</div>
-                     </div>
+                     </div> -->
                     <div class="form-group">
 							<label for="jq-validation-question" class="col-sm-3 control-label">Question</label>
 							<div class="col-sm-9">

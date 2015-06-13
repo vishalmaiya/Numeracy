@@ -11,7 +11,23 @@
 				<script>
 					init.push(function () {
 						$('#jq-datatables-example').dataTable();
-						$('#jq-datatables-example_wrapper .table-caption').text('Manage Questions');
+                        <?php
+
+                        if(isset($_GET['sid'])){
+
+                            
+                        ?>
+
+						$('#jq-datatables-example_wrapper .table-caption').text('Questions Type : <?php echo $results[0]->subtype_name; ?>  ');
+
+                        <?php }
+                        else {
+
+                           ?> $('#jq-datatables-example_wrapper .table-caption').text('Manage Questions');
+
+                        <?php }
+
+                         ?>
 						$('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
 					});
 				</script>
@@ -24,11 +40,11 @@
 								<thead>
 									<tr>
 										<th>#</th>
-										<th>Question</th>
-										<th>Type</th>
+										<th style="width: 70%;"  >Question</th>
+										<!-- <th>Type</th>
 										<th>Sub Type</th>
-										<th>Difficulty Level</th>
-                                        <th>Exam</th>
+										<th>Difficulty Level</th> -->
+                                        <th>Exam</th>                       
                                         <th>Action</th>
 									</tr>
 								</thead>
@@ -49,9 +65,9 @@
                                   <tr class="<?php echo $class; ?> gradeX">
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $val->question; ?></td>
-										<td><?php echo $val->type_name; ?></td>
+										<!-- <td><?php echo $val->type_name; ?></td>
 										<td class="center"><?php echo $val->subtype_name; ?></td>
-										<td class="center"><?php echo $val->difficulty_level; ?></td>
+										<td class="center"><?php echo $val->difficulty_level; ?></td> -->
                                         <td><?php 
                                         $tcount = 0;
                                         if(!empty($val->tests))
@@ -65,6 +81,7 @@
                                         }
                                          ?></td>
                                         <td><a href="<?php echo site_url();?>edit-question?qid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >Edit</a>
+                                            <a href="<?php echo site_url();?>view-question?qid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >View</a>
                                         <?php if($tcount == 0){ ?> 
                                         <form method="post" action="">
                                             <input type="hidden" name="qaction" value="delque"/>
@@ -91,3 +108,12 @@
 
 	</div>
 
+<?php
+ if(isset($_GET['sid'])){
+
+    $qid = $_GET['sid'];
+    echo $qid ;
+
+ }
+        
+ ?>

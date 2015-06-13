@@ -58,6 +58,7 @@ $route['logout'] = "admin/logout";
 $route['all-questions'] = "questions";
 $route['add-question'] = "questions/add_question";
 $route['edit-question'] = "questions/edit_question";
+$route['view-question'] = "questions/view_question";
 $route['question-type'] = "questiontype/all_type";
 $route['edit-type'] = "questiontype/edit_type";
 $route['all-exam'] = "exam";

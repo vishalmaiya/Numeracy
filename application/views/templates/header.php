@@ -182,7 +182,7 @@
 						<li <?php if(isset($allexam))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>all-exam">
                             <i class="menu-icon fa fa-gears"></i>
-                            <span class="mm-text"></span>All Test</a>
+                            <span class="mm-text"></span>Manage / List Test</a>
 						</li>
 						<li <?php if(isset($addexam))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>add-exam"><i class="menu-icon fa fa-plus"></i>

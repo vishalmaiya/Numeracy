@@ -26,6 +26,7 @@ class Questions extends CI_Controller {
        if (isset($_GET['sid']) ){
         $sid = $_GET['sid'];
        $results = $this->questionmodel->get_selected($sid);
+       
        }
        else{
        $results = $this->questionmodel->get_all_withexam();
@@ -40,20 +41,20 @@ class Questions extends CI_Controller {
     {
        //set validation rules
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('qtype', 'Question Type', 'required');
+        //$this->form_validation->set_rules('qtype', 'Question Type', 'required');
         $this->form_validation->set_rules('question', 'Question', 'required');
         $this->form_validation->set_rules('qanswer', 'Answer', 'required');
-        $this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
+        //$this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
         
         if ($this->form_validation->run() == TRUE)
         {
           $data = array(
-                'type' => $this->input->post('qtype'),
-                'subtype' => $this->input->post('qsubtype'),
+                // 'type' => $this->input->post('qtype'),
+                // 'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
                 'answer' => $this->input->post('qanswer'),
-                'difficulty_level' => $this->input->post('difficultylevel'),
+                // 'difficulty_level' => $this->input->post('difficultylevel'),
                 );
           $this->load->model('questionmodel');
            $this->questionmodel->insert($data);
@@ -84,20 +85,20 @@ class Questions extends CI_Controller {
         $qid = $_GET['qid'];
         //set validation rules
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('qtype', 'Question Type', 'required');
+       // $this->form_validation->set_rules('qtype', 'Question Type', 'required');
         $this->form_validation->set_rules('question', 'Question', 'required');
-        $this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
+        //$this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
         $this->form_validation->set_rules('qanswer', 'Answer', 'required');
         
         if ($this->form_validation->run() == TRUE)
         {
             $data = array(
-                'type' => $this->input->post('qtype'),
-                'subtype' => $this->input->post('qsubtype'),
+                //'type' => $this->input->post('qtype'),
+                //'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
                 'answer' => $this->input->post('qanswer'),
-                'difficulty_level' => $this->input->post('difficultylevel'),
+                //'difficulty_level' => $this->input->post('difficultylevel'),
                 );
           $this->load->model('questionmodel');
           $qid = $this->input->post('qid');
@@ -129,6 +130,74 @@ class Questions extends CI_Controller {
                 
                 $data['body'] = 'EditQuestion';
                 $this->load->view('template',$data); 
+            }
+            else
+            {
+                redirect("all-questions");
+            }
+        
+        
+         
+    }
+
+
+    // view Question
+
+     public function view_question()
+    {
+
+      echo "HIii";
+
+        if(isset($_GET['qid']))
+        $qid = $_GET['qid'];
+        //set validation rules
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('qtype', 'Question Type', 'required');
+        $this->form_validation->set_rules('question', 'Question', 'required');
+        $this->form_validation->set_rules('difficultylevel', 'Difficulty Level', 'trim|required|numeric');
+        $this->form_validation->set_rules('qanswer', 'Answer', 'required');
+        
+        // if ($this->form_validation->run() == TRUE)
+        // {
+        //     $data = array(
+        //         'type' => $this->input->post('qtype'),
+        //         'subtype' => $this->input->post('qsubtype'),
+        //         'question' => $this->input->post('question'),
+        //         'option' =>  json_encode($this->input->post('choice')),
+        //         'answer' => $this->input->post('qanswer'),
+        //         'difficulty_level' => $this->input->post('difficultylevel'),
+        //         );
+        //   $this->load->model('questionmodel');
+        //   $qid = $this->input->post('qid');
+        //    $res = $this->questionmodel->update_question($qid,$data);
+        //    if($res)
+        //    $data['message'] = 'Question updated Successfully!';
+        //    else
+        //    $data['error_message'] = 'Error While updating Question';
+        // }
+        
+        
+            if(isset($qid) && $qid != "")
+            {
+                
+                $this->load->model('questionmodel');
+                $squestion = $this->questionmodel->get_single($qid);
+                if(!is_object($squestion))
+                {
+                    $data['error_message'] = "No Record Found";
+                }
+                else
+                {
+                    $data['data'] = $squestion;
+                    $this->load->model('questiontypemodel');
+                    $data['all_parents'] = $this->questiontypemodel->get_parent_type();
+                    $data['all_childs'] = $this->questiontypemodel->get_sub_type($squestion->type); 
+                }   
+               
+                
+                $data['body'] = 'ViewQuestion';
+                $this->load->view('template',$data); 
+
             }
             else
             {
