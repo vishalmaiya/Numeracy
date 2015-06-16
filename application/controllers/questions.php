@@ -146,8 +146,6 @@ class Questions extends CI_Controller {
      public function view_question()
     {
 
-      echo "HIii";
-
         if(isset($_GET['qid']))
         $qid = $_GET['qid'];
         //set validation rules
