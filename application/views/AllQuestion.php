@@ -18,7 +18,7 @@
                             
                         ?>
 
-						$('#jq-datatables-example_wrapper .table-caption').text('Questions Type : <?php echo $results[0]->subtype_name; ?>  ');
+						$('#jq-datatables-example_wrapper .table-caption').text('Questions Type :......................... <?php echo $results[0]->subtype_name; ?>  ');
 
                         <?php }
                         else {

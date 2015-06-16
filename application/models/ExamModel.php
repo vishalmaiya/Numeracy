@@ -41,5 +41,31 @@ class ExamModel extends CI_Model{
         $this->db->where('id', $tid);
         $this->db->delete('test'); 
     }
+
+    function insert_status($data)
+    {
+        $this->db->where('key', "test_type1");
+        $this->db->update('meta_info', array("value"=>$data[0]));
+        $this->db->where('key', "test_type2");
+        $this->db->update('meta_info', array("value"=>$data[1]));
+
+
+
+
+    }
+
+    function get_meta($key)
+    {
+
+        $this->db->select('*');
+        $res = $this->db->get_where('meta_info',array('key'=>$key))->result();
+        if(!$res) {
+             return false;
+        }
+        return $res[0];
+
+
+
+    }
 }
 

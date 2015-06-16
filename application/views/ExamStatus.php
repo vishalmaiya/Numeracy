@@ -23,7 +23,7 @@
                 if(!empty($errors)): ?>
                     <div class="alert alert-danger">
     					<button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
-    					<strong>Error</strong>  <?php echo validation_errors(); ?>
+    					<strong>Error</strons>  <?php echo validation_errors(); ?>
     				</div>
                 <?php endif; 
                 if(!empty($message)): ?>
@@ -32,34 +32,40 @@
     					<strong></strong>  <?php echo $message; ?>
     				</div>
                 <?php endif;
+                print_r($results);
                 $attributes = array('class' => 'form-horizontal', 'id' => 'myForm');
                 echo form_open('',$attributes); ?>
                             <div class="form-group">
-                                <label for="tname" class="text-semibold text-md">Type 1</label>
+                                <label for="type1" class="text-semibold text-md">Type 1</label>
                                 <div  style="text-align: left;">
                                 
             	                   <select class="form-control" name="test_type1">
-										<option>-- Select Test Type --</option>
+										<option value="">-- Select Test Type --</option>
                                         <?php foreach($results as $test){
-                                            if($test->test_type == 1)
+                                            if($test->id == )
                                             echo "<option value='".$test->id."'>".$test->name."</option>";
                                         } ?>    
                                         </select>
                                  </div>
             				</div>
                             <div class="form-group">
-                                <label for="tname" class="text-semibold text-md">Type 1</label>
+                                <label for="type2" class="text-semibold text-md">Type 2</label>
                                 <div  style="text-align: left;">
             	                   <select class="form-control" name="test_type2">
-										<option>-- Select Test Type --</option>
+										<option value="">-- Select Test Type --</option>
                                         <?php foreach($results as $test){
-                                            if($test->test_type == 2)
+                                            if($test->exam_status == 2)
                                             echo "<option value='".$test->id."'>".$test->name."</option>";
                                         } ?> 
                                     </select>
                                  </div>
             				</div>
-            		
+            		      <div class="form-group">
+                                <div class="">
+                                    <input type="submit" class="btn btn-primary" value="Save Status" />
+                                    
+                                </div>
+                            </div>
                             
 						</form>
 					</div>

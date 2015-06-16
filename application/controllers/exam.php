@@ -57,12 +57,41 @@ class Exam extends CI_Controller {
     }
     public function exam_status()
     {
-         $this->load->model('exammodel');
-        $results = $this->exammodel->get_all();
-       $data['results'] = $results;
+        $this->load->model('exammodel');
+        $exam_status[] = $this->exammodel->get_meta("test_type1");
+        $exam_status[] = $this->exammodel->get_meta("test_type2");
+       $data['results'] = $exam_status;
        $data['body'] = 'ExamStatus';
        $this->load->view('template',$data);
-    }
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('test_type1', 'Type 1', 'required');
+        $this->form_validation->set_rules('test_type2', 'Type 2', 'required');
+        
+        
+        if ($this->form_validation->run() == TRUE)
+        {
+          $data[] = $this->input->post('test_type1');
+          $data[] = $this->input->post('test_type2');
+
+          
+           $this->load->model('exammodel');
+           $this->exammodel->insert_status($data);
+           $data['message'] = 'Status Saved';
+         }
+       //  $this->load->model('questionmodel');
+       // $allquestions = $this->questionmodel->get_all();
+       // $data['allquestions'] = $allquestions;
+       
+       // $data['body'] = 'AddExam';
+       // $this->load->view('template',$data);
+
+
+         
+      }
+
+
     public function edit_exam()
     {
         if(isset($_GET['tid']))
