@@ -128,10 +128,16 @@
                     $allexam = true;
                 }
                 break;
-                case "AddExam":
+                case "AddExam_1":
                 {
                     $exammenu = true;
-                    $addexam = true;
+                    $addexam1 = true;
+                }
+                break;
+                 case "AddExam_2":
+                {
+                    $exammenu = true;
+                    $addexam2 = true;
                 }
                 break;
                 case "ExamStatus":
@@ -184,13 +190,17 @@
                             <i class="menu-icon fa fa-gears"></i>
                             <span class="mm-text"></span>Manage / List Test</a>
 						</li>
-						<li <?php if(isset($addexam))echo "class='active'"; ?>>
-							<a tabindex="-1" href="<?php echo site_url(); ?>add-exam"><i class="menu-icon fa fa-plus"></i>
-                            <span class="mm-text">Add New Test</span></a>
+						<li <?php if(isset($addexam1))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>add-exam1"><i class="menu-icon fa fa-plus"></i>
+                            <span class="mm-text">Add New Test (Type1)</span></a>
+						</li>
+                        <li <?php if(isset($addexam2))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>add-exam2"><i class="menu-icon fa fa-plus"></i>
+                            <span class="mm-text">Add New Test (Type2)</span></a>
 						</li>
                         <li <?php if(isset($estatus))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>exam-status"><i class="menu-icon fa fa-plus"></i>
-                            <span class="mm-text">Exam Status</span></a>
+                            <span class="mm-text">Test Status</span></a>
 						</li>
 					</ul>
 				</li>

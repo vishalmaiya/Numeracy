@@ -55,11 +55,41 @@ Author : V.maniya
   border: 2px solid #ddd;
   padding: 15px;
 }
-.active_tupple
+.active_tupple, .active_cell td
 {
-  background-color: #A6E292;
+  background-color: #A6E292 !important;
 }
 .customelable
 {
   padding-top: 7px;
+}
+.livestatus
+{
+      color: #476707;
+  font-weight: bold;
+}
+input[type="button"]:disabled,
+input[type="submit"]:disabled,
+input[type="reset"]:disabled,
+.disabled
+{
+
+    cursor: not-allowed;
+}
+.btnedit{
+float: left;
+  margin-right: 10px;
+}
+.btndel
+{
+    float: left;
+}
+.action_td .btn
+{
+    float: left;
+  margin: 2px 2px;
+}
+.jquery-select-subtype
+{
+      min-width: 115px;
 }

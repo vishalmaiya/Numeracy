@@ -11,124 +11,68 @@
 -->
 
 
-					
-				<div class="panel">
-					<div class="panel-heading">
-						<span class="panel-title"><a href="<?php echo site_url(); ?>add-test" >Add New Test</a></span>
-					</div>
-					<div class="panel-body">
-		      	<!-- / Javascript -->
-                <?php 
-               	$errors = validation_errors();
-                if(!empty($errors)): ?>
-                    <div class="alert alert-danger">
-    					<button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
-    					<strong>Error</strong>  <?php echo validation_errors(); ?>
-    				</div>
-                <?php endif; 
-                if(!empty($message)): ?>
-                    <div class="alert alert-success">
-    					<button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
-    					<strong></strong>  <?php echo $message; ?>
-    				</div>
-                <?php endif;
-                $attributes = array('class' => 'form-horizontal', 'id' => 'myForm');
-                echo form_open('',$attributes); ?>
-                            <div class="form-group">
-                                <label for="tname" class="text-semibold text-md">Test Name</label>
-                                <div  style="text-align: left;">
-            	                   <input type="text" name="tname" <?php 
-                                   if(isset($_POST['tname']))
-                                   { echo "value='".$_POST['tname']."'";} else { echo "value=''"; } ?>  class="form-control" required=""/></label>
-                               </div>
-            				</div>
-                            <div class="form-group">
-                                <label for="tname" class="text-semibold text-md">Test Type</label>
-                                <div  style="text-align: left;">
-                                   	<select class="form-control" name="test_type">
-										<option>-- Select Test Type --</option>
-                                        <option value="1">Type 1</option>
-                                        <option value="2">Type 2</option>
-                                    </select>
-                                     
-                               </div>
-            			</div>
-                            <div class="form-group">
-                            <label for="tquestions" class="text-semibold text-md" >Choose Question</label>
-                            
-                            <div class="choose_wrapper">
-                            <table class="table">
-							<thead>
-								<tr>
-                                    <th>#</th>
-									<th>Question</th>
-									<th>Type</th>
-									<th>Subtype</th>
-                                    <th>Difficulty Level</th>
-								</tr>
-							</thead>
-							<tbody>
-                            <?php
-                            if(is_array($allquestions)){
-                                
-                                    if(isset($_POST['tquestions']))
-                                    {
-                                        foreach($allquestions as $key=>$val)
-                                        { 
-                                            if (in_array($val->id, $_POST['tquestions'])) {
-                                                $class = "active_tupple";
-                                                $chk = "checked";
-                                            }
-                                            else
-                                            {
-                                                $class = "";
-                                                $chk = "";
-                                            }
-                                            ?>
-                                            <tr class="<?php echo $class; ?>">
-                                                <td><label class="px-single">
-                                                    <input type="checkbox" class="sel_que" name="tquestions[]" value="<?php echo $val->id; ?>" <?php echo $chk; ?> />
-                                                    <span class="lbl"></span>
-                                                    </label>
-                                                </td>
-        										<td><?php echo $val->question; ?></td>
-        										<td><?php echo $val->type_name; ?></td>
-        										<td class="center"><?php echo $val->subtype_name; ?></td>
-        										<td class="center"><?php echo $val->difficulty_level; ?></td>
-        									</tr>
-                                            <?php
-                                        }
-                                    }
-                                    else
-                                    {
-                                       foreach($allquestions as $key=>$val)
-                                        {
-                                            ?>
-                                            <tr>
-                                                <td><label class="px-single"><input type="checkbox" class="sel_que" name="tquestions[]" value="<?php echo $val->id; ?>"><span class="lbl"></span></label></td>
-        										<td><?php echo $val->question; ?></td>
-        										<td><?php echo $val->type_name; ?></td>
-        										<td class="center"><?php echo $val->subtype_name; ?></td>
-        										<td class="center"><?php echo $val->difficulty_level; ?></td>
-        									</tr>
-                                     <?php
-                                        }
-                                    }    
-                                }
-                            ?>
-							</tbody>
-						   </table>
+			
+                    
+             <div class="panel-body">
+						<ul id="uidemo-tabs-default-demo" class="nav nav-tabs">
+							<li class="active">
+								<a href="#uidemo-tabs-default-demo-main" data-toggle="tab">Add Test Type 1</a>
+							</li>
+							<li class="">
+								<a href="#uidemo-tabs-default-demo-subtype" data-toggle="tab">Add Test Type 2</a>
+							</li>
+						</ul>
+
+					<div class="tab-content">
+    					<div class="tab-pane fade active in" id="uidemo-tabs-default-demo-main">
+<!-- FIRST TAB CONTENT START -->
+<?php include('AddExam_1.php'); ?>
+<!-- FIRST TAB CONTENT END -->        				    
                         </div>
-                        </div>
+    					<div class="tab-pane fade" id="uidemo-tabs-default-demo-subtype">
+<!-- Second TAB CONTENT START -->
+<?php include('AddExam_2.php'); ?>
+<!-- Second TAB CONTENT END -->    				        
+    					</div> <!-- / .tab-pane -->
+					</div> <!-- / .tab-content -->
+			</div>
+                
+                    
+                    
+
                         
-                            
-                       	<div class="form-group">
-								<div class="">
-									<input type="submit" class="btn btn-primary" value="Add Test" />
-                                    <input type="reset" class="btn btn-default" value="Cancel" />
-								</div>
-							</div>
-						</form>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+				<div class="panel">
+              
+					<div class="panel-body">
+		     
 					</div>
 				</div>
 <!-- /5. $JQUERY_VALIDATION -->

@@ -48,10 +48,22 @@ class ExamModel extends CI_Model{
         $this->db->update('meta_info', array("value"=>$data[0]));
         $this->db->where('key', "test_type2");
         $this->db->update('meta_info', array("value"=>$data[1]));
-
-
-
-
+     }
+     
+    function update_meta($key,$value)
+    {
+        
+        $data = array('key'=>$key,'value'=>$value);
+         $res = $this->db->get_where('meta_info', array('key'=>$key));
+      if( $res->num_rows() > 0 ) 
+       {
+            $this->db->where('key', $key);
+            $this->db->update('meta_info',$data);
+     }
+     else
+     {
+          $this->db->insert('meta_info',$data);
+     }
     }
 
     function get_meta($key)
@@ -62,10 +74,7 @@ class ExamModel extends CI_Model{
         if(!$res) {
              return false;
         }
-        return $res[0];
-
-
-
+        return $res[0]->value;
     }
 }
 

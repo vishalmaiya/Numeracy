@@ -84,6 +84,8 @@ class QuestionModel extends CI_Model{
        else
        return false;
     }
+    
+   
     function get_all_withexam()
     {
         $this->db->select('*');
@@ -106,22 +108,22 @@ class QuestionModel extends CI_Model{
            $this->db->from('test');
            $query = $this->db->get();
            $testres = $query->result();
-           if(!empty($testres))
-           {
-                foreach($testres as $test)
-                {
-                    $options = json_decode($test->question_ids);
-                    foreach($options as $opt)
-                    {
-                        if($opt == $res->id)
-                        {
-                            $test_names[] = array("test_id"=>$test->id,"test_name"=>$test->name);
-                        }
-                    }   
-                }
-                 $res->tests = $test_names;
-                 $test_names = '';
-             }
+          // if(!empty($testres))
+//           {
+//                foreach($testres as $test)
+//                {
+//                    $options = json_decode($test->question_ids);
+//                    foreach($options as $opt)
+//                    {
+//                        if($opt == $res->id)
+//                        {
+//                            $test_names[] = array("test_id"=>$test->id,"test_name"=>$test->name);
+//                        }
+//                    }   
+//                }
+//                 $res->tests = $test_names;
+//                 $test_names = '';
+//             }
           //$this->get_questiontype($res->subtype);
            $result[] = $res;  
         }

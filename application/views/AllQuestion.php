@@ -17,8 +17,7 @@
 
                             
                         ?>
-
-						$('#jq-datatables-example_wrapper .table-caption').text('Questions Type :......................... <?php echo $results[0]->subtype_name; ?>  ');
+						$('#jq-datatables-example_wrapper .table-caption').text('Questions Type :<?php echo $results[0]->subtype_name; ?>  ');
 
                         <?php }
                         else {
@@ -80,7 +79,7 @@
                                             }
                                         }
                                          ?></td>
-                                        <td><a href="<?php echo site_url();?>edit-question?qid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >Edit</a>
+                                        <td class="action_td"><a href="<?php echo site_url();?>edit-question?qid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >Edit</a>
                                             <a href="<?php echo site_url();?>view-question?qid=<?php echo $val->id;?>" class="btn btn-labeled btn-sm btn-outline" >View</a>
                                         <?php if($tcount == 0){ ?> 
                                         <form method="post" action="">

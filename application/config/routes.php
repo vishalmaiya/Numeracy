@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'test';
+$route['default_controller'] = 'Register';
 $route['404_override'] = 'my404';
 $route['admin'] = "dashbord";
 $route['translate_uri_dashes'] = FALSE;
@@ -62,7 +62,14 @@ $route['view-question'] = "questions/view_question";
 $route['question-type'] = "questiontype/all_type";
 $route['edit-type'] = "questiontype/edit_type";
 $route['all-exam'] = "exam";
-$route['add-exam'] = "exam/add_exam";
-$route['edit-exam'] = "exam/edit_exam";
+$route['add-exam1'] = "exam/add_exam1";
+$route['add-exam2'] = "exam/add_exam2";
+$route['edit-exam1'] = "exam/edit_exam1";
+$route['edit-exam2'] = "exam/edit_exam2";
 $route['exam-status'] = "exam/exam_status";
+
+// ------ Front End ---------- //
+$route['information'] = "UserTest/information";
+$route['usertest'] = "UserTest";
+
 

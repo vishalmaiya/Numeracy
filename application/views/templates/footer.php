@@ -16,6 +16,45 @@
 
 <script type="text/javascript">
 
+jQuery('.qtype').on('change', function() {
+   var parentid = jQuery(this).val();
+    var tobj = jQuery(this);
+                    var formData = {parent_id:parentid}; //Array 
+                     
+                        jQuery.ajax({
+                            url : "<?php echo site_url(); ?>questions/ajaxget_subtype",
+                            type: "POST",
+                            data : formData,
+                            success: function(data, textStatus, jqXHR)
+                            {
+                                var htmloption = '';
+                                var count = 0;
+                                var json = jQuery.parseJSON(data);
+                                var count = json.length;
+                                if(count > 0)
+                                {
+                                    htmloption = "<option>-- Select --</option>";
+                                }
+                                else
+                                {
+                                    htmloption = "<option disabled>-- No Subtype Available --</option>";
+                                }
+                                 $.each(json, function(index, element) {
+                                 htmloption += '<option value="' + element.id+ '">' + element.type + '</option>';
+                                  });
+                                 tobj.closest('td').next('td').find(".jquery-select-subtype").html(htmloption);
+                              //  $(this).find(".jquery-select-subtype").html(htmloption);
+                            
+                            
+                            },
+                            error: function (jqXHR, textStatus, errorThrown)
+                            {
+                         
+                            }
+                        });
+    
+});
+
 	window.LanderApp.start(init);
     jQuery("#jquery-select-type").on("change",function(){
 

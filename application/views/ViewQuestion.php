@@ -89,7 +89,6 @@
                             <div class="col-sm-9">
                                 <div class="customelable">
                                     <label><?php echo $data->question; ?></label>
-
                                  </div>
                                 
                             </div>
@@ -134,7 +133,16 @@
                         <?php
                     }?>
                     </div>
-                    
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label"><strong>Answer</strong></label>
+                        <div class="col-sm-9">
+                                <div class="customelable">
+                                    <label><strong><?php 
+                                    $index = $data->answer - 1;
+                                    echo $options[$index]; ?></strong></label>
+                                 </div>
+                            </div>
+                    </div>
                     <!-- <div class="form-group" id="addmorechoices">
                             <label class="col-sm-3 control-label"> </label>
                             <div class="col-sm-9">

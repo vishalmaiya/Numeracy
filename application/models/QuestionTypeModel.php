@@ -17,6 +17,7 @@ class QuestionTypeModel extends CI_Model{
         $result = $query->result();
         return $result;
     }
+   
     
     function get_parent_type()
     {

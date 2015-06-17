@@ -12,7 +12,7 @@
 	<!-- Open Sans font from Google CDN -->
 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300&amp;subset=latin" rel="stylesheet" type="text/css">
 
-	<!-- LanderApp's stylesheets -->
+	<!--stylesheets -->
 	<link href="<?php echo base_url();?>public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/landerapp.min.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url();?>public/css/pages.min.css" rel="stylesheet" type="text/css">
@@ -54,7 +54,6 @@
         }                
         
 	</style>
-<!-- / $DEMO -->
 
 </head>
 
