@@ -33,9 +33,17 @@ class Questions extends CI_Controller {
       }
       
        $data['results'] = $results;
-       $data['body'] = 'AllQuestion';
+        if(isset($_GET['view']) && $_GET['view'] == "type2")
+        {
+            $data['body'] = 'AllQuestion_2';
+        }
+        else
+        {
+            $data['body'] = 'AllQuestion_1';
+        }
        $this->load->view('template',$data);
     }
+
     
     public function add_question()
     {

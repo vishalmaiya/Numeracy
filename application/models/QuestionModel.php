@@ -36,7 +36,7 @@ class QuestionModel extends CI_Model{
        else
        return false;
     }
-        function get_selected($sid)
+    function get_selected($sid)
     {
         $this->db->select('*');
         $this->db->from('question_bank');

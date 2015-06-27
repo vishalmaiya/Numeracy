@@ -73,12 +73,7 @@
                                                     </label>
                                                 </td>
         										<td><?php echo $val->question; ?></td>
-                                                
-                                                
-        										
-                                                
                                                 <td>
-                                                
                                                     <select class="qtype" name="qtype_<?php echo $val->id; ?>">
                                                     <option>--Select Type--</option><?php
                                                     foreach($allparentrs as $type)

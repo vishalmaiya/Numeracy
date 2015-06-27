@@ -24,8 +24,8 @@ class Exam extends CI_Controller {
             $this->exammodel->row_delete($qid);
        }	   
        $results = $this->exammodel->get_all();
-        $exam_status['test_type1'] = $this->exammodel->get_meta("test_type1");
-        $exam_status['test_type2'] = $this->exammodel->get_meta("test_type2");
+       $exam_status['test_type1'] = $this->exammodel->get_meta("test_type1");
+       $exam_status['test_type2'] = $this->exammodel->get_meta("test_type2");
        $data['exam_status'] = $exam_status;
        $data['results'] = $results;
        $data['body'] = 'AllExam';
