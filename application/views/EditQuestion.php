@@ -84,7 +84,7 @@
             echo form_open('edit-question?qid='.$_GET['qid'],$attributes); ?>
             <!-- / Javascript -->
 	         
-               <!--  <div class="form-group">
+              <div class="form-group">
                     <label for="jq-select-type" class="col-sm-3 control-label">Question Type</label>
 	                <div class="col-sm-9">
 	                   <select id="jquery-select-type" class="form-control" name="qtype">
@@ -128,23 +128,7 @@
                             </select>
     						</div>
                     </div>
-                    <div class="form-group">
-							<label for="jq-validation-difficulty" class="col-sm-3 control-label">Difficulty Level</label>
-							<div class="col-sm-9">
-								<select class="form-control" id="jq-validation-difficulty" name="difficultylevel">
-									<option value="">Select Difficulty Level...</option>
-                                    <?php for($i=1;$i<=10;$i++)
-                                            {
-                                                if($i==$data->difficulty_level)
-                                                {
-                                                    echo "<option value='".$i."' selected>".$i."</option>";}
-                                                    else{echo "<option value='".$i."'>".$i."</option>";
-                                                }
-                                            }
-                                    ?>
-                                </select>
-							</div>
-                     </div> -->
+                  
                     <div class="form-group">
 							<label for="jq-validation-question" class="col-sm-3 control-label">Question</label>
 							<div class="col-sm-9">

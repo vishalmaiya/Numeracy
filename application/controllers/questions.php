@@ -33,9 +33,10 @@ class Questions extends CI_Controller {
       }
       
        $data['results'] = $results;
-       $data['body'] = 'AllQuestion';
+         $data['body'] = 'AllQuestion';
        $this->load->view('template',$data);
     }
+
     
     public function add_question()
     {
@@ -48,9 +49,10 @@ class Questions extends CI_Controller {
         
         if ($this->form_validation->run() == TRUE)
         {
+            
           $data = array(
-                // 'type' => $this->input->post('qtype'),
-                // 'subtype' => $this->input->post('qsubtype'),
+                'type' => $this->input->post('qtype'),
+                'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
                 'answer' => $this->input->post('qanswer'),
@@ -93,8 +95,8 @@ class Questions extends CI_Controller {
         if ($this->form_validation->run() == TRUE)
         {
             $data = array(
-                //'type' => $this->input->post('qtype'),
-                //'subtype' => $this->input->post('qsubtype'),
+                'type' => $this->input->post('qtype'),
+                'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
                 'answer' => $this->input->post('qanswer'),

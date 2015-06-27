@@ -37,12 +37,17 @@
             <div class="card-content">
                 <span class="card-title black-text">Sign Up</span>
                 
-                <form action="information" method="post" id="login-form">
+                <form action="register" method="post" id="login-form">
                     <div class="row">
-                        <div id="id_username_container" class="input-field col s12 required">
+                        <div id="id_fname_container" class="input-field col s6 required">
                             <i class="mdi-action-account-box prefix"></i>
-                            <input type="text" name="username" maxlength="254" id="id_username">
-                            <label for="id_username">Username</label>
+                            <input type="text" name="fname" maxlength="254" id="id_fname">
+                            <label for="id_fname">First Name</label>
+                        </div>
+                        <div id="id_lname_container" class="input-field col s6 required">
+                            
+                            <input type="text" name="lname" maxlength="254" id="id_lname">
+                            <label for="id_lname">Last Name</label>
                         </div>
                     </div>
                     <div class="row">
@@ -71,10 +76,10 @@
                              <div style="float:left">
                               <span>
                                 <i >Gender</i>
-                                <input name="group1" type="radio" id="test1" />
-                                <label for="test1">Male</label>
-                                <input name="group1" type="radio" id="test2" />
-                                <label for="test2">Female</label>
+                                <input name="gender" value="M" type="radio" id="male" />
+                                <label for="male">Male</label>
+                                <input name="gender" value="F" type="radio" id="female" />
+                                <label for="female">Female</label>
                               </span>
                             </div>
                         </div>

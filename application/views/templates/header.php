@@ -24,11 +24,9 @@
 	<![endif]-->
 </head>
 <body class="theme-asphalt  main-menu-animated">
-
-<script>var init = [];</script>
-
 <div id="main-wrapper">
 
+<script>var init = [];</script>
 
 <!-- 2. $MAIN_NAVIGATION ===========================================================================
 
@@ -161,6 +159,7 @@
                             "></i>
                             <span class="mm-text"></span>Manage/List Questions</a>
 						</li>
+                                               
 						<li <?php if(isset($addquestion))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>add-question"><i class="menu-icon fa fa-plus"></i>
                             <span class="mm-text">Add New Questions</span></a>

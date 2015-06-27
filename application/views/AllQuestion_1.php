@@ -40,9 +40,9 @@
 									<tr>
 										<th>#</th>
 										<th style="width: 70%;"  >Question</th>
-										<th>Type</th>
+										<!-- <th>Type</th>
 										<th>Sub Type</th>
-										<!-- <th>Difficulty Level</th> -->
+										<th>Difficulty Level</th> -->
                                         <th>Exam</th>                       
                                         <th>Action</th>
 									</tr>
@@ -64,18 +64,17 @@
                                   <tr class="<?php echo $class; ?> gradeX">
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $val->question; ?></td>
-										<td><?php echo $val->type_name; ?></td>
+										 <td><?php echo $val->type_name; ?></td>
 										<td class="center"><?php echo $val->subtype_name; ?></td>
-									<!--	<td class="center"><?php echo $val->difficulty_level; ?></td> -->
+										<td class="center"><?php echo $val->difficulty_level; ?></td>
                                         <td><?php 
                                         $tcount = 0;
                                         if(!empty($val->tests))
                                         {
                                             foreach($val->tests as $t)
-                                            {
-                                                $tcount++;
-                                                $tid = $t['test_id'];
-                                                $tname = $t['test_name'];
+                                            {$tcount++;
+                                            $tid = $t['test_id'];
+                                            $tname = $t['test_name'];
                                                 echo "- <a href='".site_url()."edit-exam?tid=$tid' target='_blank'>".$tname."</a><br/>";
                                             }
                                         }
