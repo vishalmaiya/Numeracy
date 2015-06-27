@@ -133,7 +133,7 @@
                 $attributes = array('class' => 'form-horizontal', 'id' => 'myForm');
                 echo form_open('',$attributes); ?>
                 <div class="form-group">
-                    <!-- <label for="quetype" class="col-sm-3 control-label">Question Type</label>
+                 <label for="quetype" class="col-sm-3 control-label">Question Type</label>
                     <div class="col-sm-9">
 	                   <select class="form-control" id="jquery-select-type"  name="qtype">
 							<option>-- Select --</option>
@@ -157,24 +157,6 @@
     	                   </div>
 
 
-    	             <div class="form-group">
-								<label for="jq-validation-difficulty" class="col-sm-3 control-label">Difficulty Level</label>
-								<div class="col-sm-9">
-									<select class="form-control" id="jq-validation-difficulty" name="difficultylevel">
-										<option value="">Select Difficulty Level...</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                    </select>
-								</div>
-				        </div> -->
 
                         <div class="form-group">
 								<label for="jq-validation-question" class="col-sm-3 control-label">Question</label>

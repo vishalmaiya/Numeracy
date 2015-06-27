@@ -153,18 +153,13 @@
 				<li class="mm-dropdown <?php if(isset($allquestion))echo "open"; ?>">
 					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Question Bank</span></a>
 					<ul>
-						<li <?php if(isset($questions1))echo "class='active'"; ?>>
-							<a tabindex="-1" href="<?php echo site_url(); ?>all-questions?view=type1">
+						<li <?php if(isset($questions))echo "class='active'"; ?>>
+							<a tabindex="-1" href="<?php echo site_url(); ?>all-questions">
                             <i class="menu-icon fa fa-gears
                             "></i>
-                            <span class="mm-text"></span>Manage/List Questions (Type 1)</a>
+                            <span class="mm-text"></span>Manage/List Questions</a>
 						</li>
-                        <li <?php if(isset($questions2))echo "class='active'"; ?>>
-							<a tabindex="-1" href="<?php echo site_url(); ?>all-questions?view=type2">
-                            <i class="menu-icon fa fa-gears
-                            "></i>
-                            <span class="mm-text"></span>Manage/List Questions (Type 2)</a>
-						</li>                        
+                                               
 						<li <?php if(isset($addquestion))echo "class='active'"; ?>>
 							<a tabindex="-1" href="<?php echo site_url(); ?>add-question"><i class="menu-icon fa fa-plus"></i>
                             <span class="mm-text">Add New Questions</span></a>

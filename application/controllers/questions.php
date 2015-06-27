@@ -33,14 +33,7 @@ class Questions extends CI_Controller {
       }
       
        $data['results'] = $results;
-        if(isset($_GET['view']) && $_GET['view'] == "type2")
-        {
-            $data['body'] = 'AllQuestion_2';
-        }
-        else
-        {
-            $data['body'] = 'AllQuestion_1';
-        }
+         $data['body'] = 'AllQuestion';
        $this->load->view('template',$data);
     }
 
@@ -56,9 +49,10 @@ class Questions extends CI_Controller {
         
         if ($this->form_validation->run() == TRUE)
         {
+            
           $data = array(
-                // 'type' => $this->input->post('qtype'),
-                // 'subtype' => $this->input->post('qsubtype'),
+                'type' => $this->input->post('qtype'),
+                'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
                 'answer' => $this->input->post('qanswer'),
@@ -101,8 +95,8 @@ class Questions extends CI_Controller {
         if ($this->form_validation->run() == TRUE)
         {
             $data = array(
-                //'type' => $this->input->post('qtype'),
-                //'subtype' => $this->input->post('qsubtype'),
+                'type' => $this->input->post('qtype'),
+                'subtype' => $this->input->post('qsubtype'),
                 'question' => $this->input->post('question'),
                 'option' =>  json_encode($this->input->post('choice')),
                 'answer' => $this->input->post('qanswer'),

@@ -43,8 +43,11 @@
 								<tr>
                                     <th>#</th>
 									<th>Question</th>
-									<th>Type</th>
+								<?php
+                                    /**
+                                	<th>Type</th>
 									<th>Subtype</th>
+                                **/ ?>
                                     <th>Difficulty Level</th>
 								</tr>
 							</thead>
@@ -73,7 +76,9 @@
                                                     </label>
                                                 </td>
         										<td><?php echo $val->question; ?></td>
-                                                <td>
+                                              <?php
+                                    /**
+                                     *   <td>
                                                     <select class="qtype" name="qtype_<?php echo $val->id; ?>">
                                                     <option>--Select Type--</option><?php
                                                     foreach($allparentrs as $type)
@@ -112,6 +117,7 @@
                                                     ?>
                                                     </select>
                                                 </td>
+                                                **/ ?>
         										<td class="center">
                                                     <select name="qdiff_<?php echo $val->id; ?>">
                                                     <option value="">-- Select --</option>
@@ -143,7 +149,9 @@
                                             <tr>
                                                 <td><label class="px-single"><input type="checkbox" class="sel_que" name="tquestions[]" value="<?php echo $val->id; ?>"><span class="lbl"></span></label></td>
         										<td><?php echo $val->question; ?></td>
-        										<td>
+        									<?php
+                                            /**
+                                             * 	<td>
                                                 <select class="qtype" name="qtype_<?php echo $val->id; ?>">
                                                 <option>--Select Type--</option><?php
                                                 foreach($allparentrs as $type)
@@ -155,6 +163,8 @@
                                                 <select class="jquery-select-subtype" name="qsubtype_<?php echo $val->id; ?>">
                                                 <option>-- SubType --</option></select>
                                                 </td>
+                                            **/ 
+                                            ?>
         										<td class="center">
                                                 <select name="qdiff_<?php echo $val->id; ?>">
                                                 <option value="">-- Select --</option>

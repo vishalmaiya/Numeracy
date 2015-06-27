@@ -46,8 +46,8 @@ class Exam extends CI_Controller {
             foreach($sque as $sq)
             {
                 $temp['qid'] = $sq;
-                $temp['type'] = $this->input->post('qtype_'.$sq);
-                $temp['subtype'] = $this->input->post('qsubtype_'.$sq);
+               //$temp['type'] = $this->input->post('qtype_'.$sq);
+               // $temp['subtype'] = $this->input->post('qsubtype_'.$sq);
                 $temp['difficulty'] = $this->input->post('qdiff_'.$sq);
                 $alldata[] = $temp;
             }
@@ -117,8 +117,8 @@ class Exam extends CI_Controller {
             foreach($sque as $sq)
             {
                 $temp['qid'] = $sq;
-                $temp['type'] = $this->input->post('qtype_'.$sq);
-                $temp['subtype'] = $this->input->post('qsubtype_'.$sq);
+               // $temp['type'] = $this->input->post('qtype_'.$sq);
+               // $temp['subtype'] = $this->input->post('qsubtype_'.$sq);
                 $temp['difficulty'] = $this->input->post('qdiff_'.$sq);
                 $alldata[] = $temp;
             }

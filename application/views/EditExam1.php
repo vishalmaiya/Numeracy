@@ -41,8 +41,10 @@
 								<tr>
                                     <th>#</th>
 									<th>Question</th>
-									<th>Type</th>
+									<?php /**
+                                     <th>Type</th>
 									<th>Subtype</th>
+                                    **/ ?>
                                     <th>Difficulty Level</th>
 								</tr>
 							</thead>
@@ -75,6 +77,7 @@
                                                     </label>
                                                 </td>
         										<td><?php echo $val->question;?></td>
+                                              <?php /**
                                                 <td>
                                                 
                                                     <select class="qtype" name="qtype_<?php echo $val->id; ?>">
@@ -124,6 +127,8 @@
                                                     ?>
                                                     </select>
                                                 </td>
+                                                **/ 
+                                              ?>
         										<td class="center">
                                                     <select name="qdiff_<?php echo $val->id; ?>">
                                                     <option value="">-- Select --</option>
@@ -132,6 +137,7 @@
                                                     {
                                                         foreach($ansdatas as $sdata)
                                                             {
+                                                                echo $sdata->difficulty;
                                                                 if($sdata->qid == $val->id && $sdata->difficulty == $i)
                                                                 {
                                                                     $seldata = "selected";
