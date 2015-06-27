@@ -35,10 +35,17 @@
             				</div>
                     
                             <div class="form-group">
-                            <label for="tquestions" class="text-semibold text-md" >Choose Question</label>
                             
+                            	
+				<script>
+					init.push(function () {
+						$('#jq-datatables').dataTable({ "bPaginate": false,});
+						$('#jq-datatables_wrapper .table-caption').text('Choose Question');
+						$('#jq-datatables_wrapper .dataTables_filter input').attr('placeholder', 'Search...');
+					});
+				</script>
                             <div class="choose_wrapper">
-                            <table class="table">
+                            <table class="table table-bordered jq-datatables" id="jq-datatables">
 							<thead>
 								<tr>
                                     <th>#</th>
