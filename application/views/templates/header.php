@@ -204,6 +204,24 @@
 						</li>
 					</ul>
 				</li>
+
+
+
+				<li class="mm-dropdown <?php if(isset($allquestion))echo "open"; ?>">
+					<a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Survey Bank</span></a>
+					<ul>
+						<li >
+							<a tabindex="-1" href="<?php echo site_url(); ?>survey-questions">
+                            <i class="menu-icon fa fa-gears
+                            "></i>
+                            <span class="mm-text"></span>Manage/List Survey Questions</a>
+						</li>
+						<li >
+							<a tabindex="-1" href="<?php echo site_url(); ?>add-survey-question"><i class="menu-icon fa fa-plus"></i>
+                            <span class="mm-text">Add New Survey Questions</span></a>
+						</li>
+					</ul>
+				</li>
                 
             </ul> <!-- / .navigation -->
 			

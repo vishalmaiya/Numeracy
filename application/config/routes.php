@@ -67,9 +67,15 @@ $route['add-exam2'] = "exam/add_exam2";
 $route['edit-exam1'] = "exam/edit_exam1";
 $route['edit-exam2'] = "exam/edit_exam2";
 $route['exam-status'] = "exam/exam_status";
+$route['survey-questions'] = "survey";
+$route['add-survey-question'] = "survey/add_question";
+$route['edit-survey-question'] = "survey/edit_question";
+$route['view-survey-question'] = "survey/view_question";
+
 
 // ------ Front End ---------- //
 $route['information'] = "UserTest/information";
-$route['usertest'] = "UserTest";
+//$route['usertest'] = "UserTest/gettype1_question";
+$route['surveyquestions'] = "surveyquestions";
 
 

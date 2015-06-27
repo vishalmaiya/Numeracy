@@ -16,7 +16,8 @@ class UserTest extends CI_Controller {
 
     public function index()
     {
-         $data['body'] = 'Usertest';
+
+       $data['body'] = 'Usertest';
        $this->load->view('frontend/template',$data);
     }
     public function information()
@@ -24,5 +25,29 @@ class UserTest extends CI_Controller {
 	   $data['body'] = 'Information';
        $this->load->view('frontend/template',$data);
     }
+
+
+    public function gettype1_question()
+    {
+       $this->load->model('TestModel');
+        
+                
+       $results = $this->TestModel->get_question();
+        foreach($results as $value)
+        {   
+            //print_r($results);
+            print_r($value->question);
+            $value->question;
+            $array = json_decode($value->option, true);
+            print_r($array);
+            break;
+                          
+        }
+       // $data['results'] = $results;
+       //  $data['exam_status'] = $exam_status;
+       // $data['body'] = 'ExamStatus';
+       // $this->load->view('template',$data);
+         
+      }
  }
 ?>
