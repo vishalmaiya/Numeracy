@@ -43,11 +43,8 @@
 								<tr>
                                     <th>#</th>
 									<th>Question</th>
-								<?php
-                                    /**
                                 	<th>Type</th>
 									<th>Subtype</th>
-                                **/ ?>
                                     <th>Difficulty Level</th>
 								</tr>
 							</thead>
@@ -75,7 +72,16 @@
                                                     <span class="lbl"></span>
                                                     </label>
                                                 </td>
-        										<td><?php echo $val->question; ?></td>
+        										<td><?php  echo $val->question; ?></td>
+                                               <td><?php 
+                                                foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->type)echo $typ->type; 
+                                                } ?></td>
+                                                <td><?php foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->subtype)echo $typ->type; 
+                                                } ?></td>
                                               <?php
                                     /**
                                      *   <td>
@@ -118,6 +124,7 @@
                                                     </select>
                                                 </td>
                                                 **/ ?>
+                                                
         										<td class="center">
                                                     <select name="qdiff_<?php echo $val->id; ?>">
                                                     <option value="">-- Select --</option>
@@ -149,6 +156,15 @@
                                             <tr>
                                                 <td><label class="px-single"><input type="checkbox" class="sel_que" name="tquestions[]" value="<?php echo $val->id; ?>"><span class="lbl"></span></label></td>
         										<td><?php echo $val->question; ?></td>
+                                                <td><?php 
+                                                foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->type)echo $typ->type; 
+                                                } ?></td>
+                                                <td><?php foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->subtype)echo $typ->type; 
+                                                } ?></td>
         									<?php
                                             /**
                                              * 	<td>

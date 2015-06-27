@@ -46,7 +46,7 @@ class Exam extends CI_Controller {
             foreach($sque as $sq)
             {
                 $temp['qid'] = $sq;
-               //$temp['type'] = $this->input->post('qtype_'.$sq);
+              // $temp['type'] = $this->input->post('qtype_'.$sq);
                // $temp['subtype'] = $this->input->post('qsubtype_'.$sq);
                 $temp['difficulty'] = $this->input->post('qdiff_'.$sq);
                 $alldata[] = $temp;
@@ -59,16 +59,17 @@ class Exam extends CI_Controller {
                 );
            $this->load->model('exammodel');
            $this->exammodel->insert($data);
-           $alltype = $this->questiontypemodel->get_all();
-           $data['alltype'] = $alltype;
+           
            $data['message'] = 'Test Added Successfully';
          }
            
        $all_parents = $this->questiontypemodel->get_parent_type();
        $this->load->model('questionmodel');
+       $alltype = $this->questiontypemodel->get_all();
+       $data['alltype'] = $alltype;
        $allquestions = $this->questionmodel->get_all();
        $data['allquestions'] = $allquestions;
-       $data['allparentrs'] = $all_parents;
+      // $data['allparentrs'] = $all_parents;
        $data['body'] = 'AddExam_1';
        $this->load->view('template',$data);
     }
@@ -92,7 +93,9 @@ class Exam extends CI_Controller {
            $this->exammodel->insert($data);
            $data['message'] = 'Test Added Successfully';
          }
-          
+         $alltype = $this->questiontypemodel->get_all();
+       $data['alltype'] = $alltype;
+         
        $this->load->model('questionmodel');
        $allquestions = $this->questionmodel->get_all();
        $data['allquestions'] = $allquestions;

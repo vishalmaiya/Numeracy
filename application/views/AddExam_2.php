@@ -46,6 +46,8 @@
 								<tr>
                                     <th>#</th>
 									<th>Question</th>
+                                    <th>Type</th>
+                                    <th>Sub Type</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -73,7 +75,18 @@
                                                     </label>
                                                 </td>
         										<td><?php echo $val->question; ?></td>
+                                                <td><?php 
+                                                foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->type)echo $typ->type; 
+                                                } ?></td>
+                                                <td><?php foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->subtype)echo $typ->type; 
+                                                } ?></td>
         									</tr>
+                                            
+                                                
                                             <?php
                                         }
                                     }
@@ -85,6 +98,16 @@
                                             <tr>
                                                 <td><label class="px-single"><input type="checkbox" class="sel_que" name="tquestions[]" value="<?php echo $val->id; ?>"><span class="lbl"></span></label></td>
         										<td><?php echo $val->question; ?></td>
+                                                	<td>
+                                                <?php 
+                                                foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->type)echo $typ->type; 
+                                                } ?></td>
+                                                <td><?php foreach($alltype as $typ)
+                                                {
+                                                    if($typ->id ==$val->subtype)echo $typ->type; 
+                                                } ?></td>
         									</tr>
                                      <?php
                                         }
