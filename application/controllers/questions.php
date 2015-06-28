@@ -17,19 +17,19 @@ class Questions extends CI_Controller {
     
 	public function index()
 	{
-	   $this->load->model('questionmodel');
+	   $this->load->model('question_model');
 	   if(isset($_POST['qaction']) && $_POST['qaction'] == "delque")
        {
             $qid = $_POST['qid'];
-            $this->questionmodel->row_delete($qid);
+            $this->question_model->row_delete($qid);
        }
        if (isset($_GET['sid']) ){
         $sid = $_GET['sid'];
-       $results = $this->questionmodel->get_selected($sid);
+       $results = $this->question_model->get_selected($sid);
        
        }
        else{
-       $results = $this->questionmodel->get_all_withexam();
+       $results = $this->question_model->get_all_withexam();
       }
       
        $data['results'] = $results;
@@ -58,13 +58,13 @@ class Questions extends CI_Controller {
                 'answer' => $this->input->post('qanswer'),
                 // 'difficulty_level' => $this->input->post('difficultylevel'),
                 );
-          $this->load->model('questionmodel');
-           $this->questionmodel->insert($data);
+          $this->load->model('question_model');
+           $this->question_model->insert($data);
            $data['message'] = 'Question Added Successfully';
          }
           
-       $this->load->model('questiontypemodel');
-       $data['all_parents'] = $this->questiontypemodel->get_parent_type();
+       $this->load->model('questiontype_model');
+       $data['all_parents'] = $this->questiontype_model->get_parent_type();
        $data['body'] = 'AddQuestion';
        $this->load->view('template',$data);
     }
@@ -73,8 +73,8 @@ class Questions extends CI_Controller {
     function ajaxget_subtype()
     {
         $parent_id = $_POST['parent_id'];        
-        $this->load->model('questiontypemodel');
-        $all_parents = $this->questiontypemodel->get_sub_type($parent_id);
+        $this->load->model('questiontype_model');
+        $all_parents = $this->questiontype_model->get_sub_type($parent_id);
         $result = json_encode($all_parents);
         print_r($result);
         die;
@@ -102,9 +102,9 @@ class Questions extends CI_Controller {
                 'answer' => $this->input->post('qanswer'),
                 //'difficulty_level' => $this->input->post('difficultylevel'),
                 );
-          $this->load->model('questionmodel');
+          $this->load->model('question_model');
           $qid = $this->input->post('qid');
-           $res = $this->questionmodel->update_question($qid,$data);
+           $res = $this->question_model->update_question($qid,$data);
            if($res)
            $data['message'] = 'Question updated Successfully!';
            else
@@ -115,8 +115,8 @@ class Questions extends CI_Controller {
             if(isset($qid) && $qid != "")
             {
                 
-                $this->load->model('questionmodel');
-                $squestion = $this->questionmodel->get_single($qid);
+                $this->load->model('question_model');
+                $squestion = $this->question_model->get_single($qid);
                 if(!is_object($squestion))
                 {
                     $data['error_message'] = "No Record Found";
@@ -124,9 +124,9 @@ class Questions extends CI_Controller {
                 else
                 {
                     $data['data'] = $squestion;
-                    $this->load->model('questiontypemodel');
-                    $data['all_parents'] = $this->questiontypemodel->get_parent_type();
-                    $data['all_childs'] = $this->questiontypemodel->get_sub_type($squestion->type); 
+                    $this->load->model('questiontype_model');
+                    $data['all_parents'] = $this->questiontype_model->get_parent_type();
+                    $data['all_childs'] = $this->questiontype_model->get_sub_type($squestion->type); 
                 }   
                
                 
@@ -167,9 +167,9 @@ class Questions extends CI_Controller {
         //         'answer' => $this->input->post('qanswer'),
         //         'difficulty_level' => $this->input->post('difficultylevel'),
         //         );
-        //   $this->load->model('questionmodel');
+        //   $this->load->model('question_model');
         //   $qid = $this->input->post('qid');
-        //    $res = $this->questionmodel->update_question($qid,$data);
+        //    $res = $this->question_model->update_question($qid,$data);
         //    if($res)
         //    $data['message'] = 'Question updated Successfully!';
         //    else
@@ -180,8 +180,8 @@ class Questions extends CI_Controller {
             if(isset($qid) && $qid != "")
             {
                 
-                $this->load->model('questionmodel');
-                $squestion = $this->questionmodel->get_single($qid);
+                $this->load->model('question_model');
+                $squestion = $this->question_model->get_single($qid);
                 if(!is_object($squestion))
                 {
                     $data['error_message'] = "No Record Found";
@@ -189,9 +189,9 @@ class Questions extends CI_Controller {
                 else
                 {
                     $data['data'] = $squestion;
-                    $this->load->model('questiontypemodel');
-                    $data['all_parents'] = $this->questiontypemodel->get_parent_type();
-                    $data['all_childs'] = $this->questiontypemodel->get_sub_type($squestion->type); 
+                    $this->load->model('questiontype_model');
+                    $data['all_parents'] = $this->questiontype_model->get_parent_type();
+                    $data['all_childs'] = $this->questiontype_model->get_sub_type($squestion->type); 
                 }   
                
                 

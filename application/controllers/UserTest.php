@@ -14,7 +14,7 @@ class UserTest extends CI_Controller {
             exit;
        }
        $this->load->helper(array('form'));
-       $this->load->model('UsertestModel');
+       $this->load->model('Usertest_model');
     }
 
     public function index()
@@ -27,7 +27,7 @@ class UserTest extends CI_Controller {
             //store ans
             $question_id = $_POST['que_id']; 
             $ans_id = $_POST['answer'];
-            $question_data = $this->UsertestModel->get_question($question_id);
+            $question_data = $this->Usertest_model->get_question($question_id);
             $correct_ansID = $question_data->answer;
             if($correct_ansID == $ans_id)
             {
@@ -45,23 +45,23 @@ class UserTest extends CI_Controller {
                                 "answer_id"=>$ans_id,
                                 "test_type"=>1,
                                 );
-            $this->UsertestModel->save_ans($temp_data);
+            $this->Usertest_model->save_ans($temp_data);
             
             //update user test status
-             $result = $this->UsertestModel->get_nextQuestion("test_type1");
+             $result = $this->Usertest_model->get_nextQuestion("test_type1");
              if($result == "NO")
              {
-                  $ustatus = $this->UsertestModel->get_userstatus($cur_user);
+                  $ustatus = $this->Usertest_model->get_userstatus($cur_user);
                   $ctest = $ustatus->test_status;
                   if($ctest == "F")
                   {
                     $cdatastus = array("test_status"=>"S");
-                    $this->UsertestModel->update_test_status($user_id,$cdatastus);
+                    $this->Usertest_model->update_test_status($user_id,$cdatastus);
                   }
                   else if($ctest == "S")
                   {
                     $cdatastus = array("test_status"=>"SU");
-                    $this->UsertestModel->update_test_status($user_id,$cdatastus);
+                    $this->Usertest_model->update_test_status($user_id,$cdatastus);
                   }
                   
                   
@@ -73,15 +73,15 @@ class UserTest extends CI_Controller {
         
        
        //chech milestone position for current user
-       $ustatus = $this->UsertestModel->get_userstatus($cur_user);
+       $ustatus = $this->Usertest_model->get_userstatus($cur_user);
        $ctest = $ustatus->test_status;
       if($ctest == "F")
       {
-        $result = $this->UsertestModel->get_nextQuestion("test_type1",$question_id);
+        $result = $this->Usertest_model->get_nextQuestion("test_type1",$question_id);
       }
       else if($ctest == "S")
       {
-        $result = $this->UsertestModel->get_nextQuestion("test_type2",$question_id);
+        $result = $this->Usertest_model->get_nextQuestion("test_type2",$question_id);
       }
       else if($ctest == "SU")
       {

@@ -17,8 +17,8 @@ class SurveyQuestions extends CI_Controller {
     public function index()
     {
 
-       $this->load->model('surveymodel');
-       $results = $this->surveymodel->get_all();
+       $this->load->model('survey_model');
+       $results = $this->survey_model->get_all();
        //print_r($results);
        $data['results'] = $results;
        $data['body'] = 'SurveyQuestions';

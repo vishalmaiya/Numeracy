@@ -27,22 +27,22 @@ class Register extends CI_Controller {
                             'gender' => $_POST['gender']);
             
        
-       $this->load->model('UsertestModel');
-       $result = $this->UsertestModel->set_user($data);
+       $this->load->model('Usertest_model');
+       $result = $this->Usertest_model->set_user($data);
        if($result['status'] == "SUCCESS")
        {
             //create session and redirect to information page
             $this->session->set_userdata("testuser_id",$result['id']);
-            $this->load->model('ExamModel');
-            $test1_id = $this->ExamModel->get_meta('test_type1');
-            $test2_id = $this->ExamModel->get_meta('test_type2');
+            $this->load->model('Exam_model');
+            $test1_id = $this->Exam_model->get_meta('test_type1');
+            $test2_id = $this->Exam_model->get_meta('test_type2');
             $ustatus = array("user_id"=>$result['id'],
                             "test_F"=>"T1",
                             "test_S"=>"T2",
                             "test1_id"=>$test1_id,
                             "test2_id"=>$test2_id,
                             "test_status"=>"F");
-            $this->UsertestModel->set_testuser_status($ustatus);
+            $this->Usertest_model->set_testuser_status($ustatus);
          
             redirect("information");
             

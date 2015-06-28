@@ -13,11 +13,11 @@ class QuestionType extends CI_Controller {
             redirect("admin/login");  //for example
         }
         $this->load->helper(array('form'));
-        $this->load->model('questiontypemodel');
+        $this->load->model('questiontype_model');
         if(isset($_POST['qtype']) && $_POST['qtype'] == "deltype")
        {
             $tid = $_POST['tid'];
-            $this->questiontypemodel->row_delete($tid);
+            $this->questiontype_model->row_delete($tid);
        }
     }
     
@@ -36,16 +36,16 @@ class QuestionType extends CI_Controller {
                 'type' => $this->input->post('qtype'),
                 'parent_id' => $this->input->post('qparent'),
                 );
-            $this->questiontypemodel->insert($data); 
+            $this->questiontype_model->insert($data); 
             $data['message'] = 'Record Inserted Successfully';
         }
         }
             
-            $this->load->model('questiontypemodel');
-            $all_parents = $this->questiontypemodel->get_parent_type();
+            $this->load->model('questiontype_model');
+            $all_parents = $this->questiontype_model->get_parent_type();
             foreach($all_parents as $parent)
             {   
-                $all_subtypes = $this->questiontypemodel->get_sub_type_with_question($parent->id);
+                $all_subtypes = $this->questiontype_model->get_sub_type_with_question($parent->id);
                 $parent->sub_type = $all_subtypes;
                 $types[]=$parent;                
             }
@@ -84,12 +84,12 @@ class QuestionType extends CI_Controller {
            $data = array(
                 'type' => $this->input->post('qtype')
                 );
-            $this->questiontypemodel->update_type($tid,$data);
+            $this->questiontype_model->update_type($tid,$data);
             $data['message'] = 'Record updated Successfully';
         }
         
         
-        $singlerecord = $this->questiontypemodel->get_single($tid);
+        $singlerecord = $this->questiontype_model->get_single($tid);
         $data['single_record'] = $singlerecord;
         
         $data['content'] = "EditType";
@@ -103,10 +103,10 @@ class QuestionType extends CI_Controller {
       }
 
 
-      $all_parents = $this->questiontypemodel->get_parent_type();
+      $all_parents = $this->questiontype_model->get_parent_type();
         foreach($all_parents as $parent)
         {   
-            $all_subtypes = $this->questiontypemodel->get_sub_type_with_question($parent->id);
+            $all_subtypes = $this->questiontype_model->get_sub_type_with_question($parent->id);
             $parent->sub_type = $all_subtypes;
             $types[]=$parent;                
         }

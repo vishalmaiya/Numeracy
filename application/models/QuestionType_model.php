@@ -1,5 +1,5 @@
 <?php 
-class QuestionTypeModel extends CI_Model{
+class QuestionType_model extends CI_Model{
         
     function __construct() {
     parent::__construct();

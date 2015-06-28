@@ -17,19 +17,19 @@ class survey extends CI_Controller {
     
 	public function index()
 	{
-	   $this->load->model('SurveyModel');
+	   $this->load->model('Survey_model');
 	   if(isset($_POST['qaction']) && $_POST['qaction'] == "delque")
        {
             $qid = $_POST['qid'];
-            $this->SurveyModel->row_delete($qid);
+            $this->Survey_model->row_delete($qid);
        }
        if (isset($_GET['sid']) ){
         $sid = $_GET['sid'];
-       $results = $this->SurveyModel->get_selected($sid);
+       $results = $this->Survey_model->get_selected($sid);
        
        }
        else{
-       $results = $this->SurveyModel->get_all();
+       $results = $this->Survey_model->get_all();
       }
       
        $data['results'] = $results;
@@ -56,13 +56,13 @@ class survey extends CI_Controller {
                 //'answer' => $this->input->post('qanswer'),
                 // 'difficulty_level' => $this->input->post('difficultylevel'),
                 );
-          $this->load->model('SurveyModel');
-           $this->SurveyModel->insert($data);
+          $this->load->model('Survey_model');
+           $this->Survey_model->insert($data);
            $data['message'] = 'Survey Question Added Successfully';
          }
           
-       $this->load->model('SurveyModel');
-      // $data['all_parents'] = $this->questiontypemodel->get_parent_type();
+       $this->load->model('Survey_model');
+      // $data['all_parents'] = $this->questiontype_model->get_parent_type();
        $data['body'] = 'AddSurveyQuestion';
        $this->load->view('template',$data);
     }
@@ -71,8 +71,8 @@ class survey extends CI_Controller {
     function ajaxget_subtype()
     {
         $parent_id = $_POST['parent_id'];        
-        $this->load->model('questiontypemodel');
-      //  $all_parents = $this->questiontypemodel->get_sub_type($parent_id);
+        $this->load->model('questiontype_model');
+      //  $all_parents = $this->questiontype_model->get_sub_type($parent_id);
         $result = json_encode($all_parents);
         print_r($result);
         die;
@@ -100,9 +100,9 @@ class survey extends CI_Controller {
                 //'answer' => $this->input->post('qanswer'),
                 //'difficulty_level' => $this->input->post('difficultylevel'),
                 );
-          $this->load->model('SurveyModel');
+          $this->load->model('Survey_model');
           $qid = $this->input->post('qid');
-           $res = $this->SurveyModel->update_question($qid,$data);
+           $res = $this->Survey_model->update_question($qid,$data);
            if($res)
            $data['message'] = 'Survey Question updated Successfully!';
            else
@@ -113,8 +113,8 @@ class survey extends CI_Controller {
             if(isset($qid) && $qid != "")
             {
                 
-                $this->load->model('SurveyModel');
-                $squestion = $this->SurveyModel->get_single($qid);
+                $this->load->model('Survey_model');
+                $squestion = $this->Survey_model->get_single($qid);
                 if(!is_object($squestion))
                 {
                     $data['error_message'] = "No Record Found";
@@ -122,9 +122,9 @@ class survey extends CI_Controller {
                 else
                 {
                     $data['data'] = $squestion;
-                    $this->load->model('SurveyModel');
-                    //$data['all_parents'] = $this->SurveyModel->get_parent_type();
-                    //$data['all_childs'] = $this->SurveyModel->get_sub_type($squestion->type); 
+                    $this->load->model('Survey_model');
+                    //$data['all_parents'] = $this->Survey_model->get_parent_type();
+                    //$data['all_childs'] = $this->Survey_model->get_sub_type($squestion->type); 
                 }   
                
                 print_r($data);
@@ -178,8 +178,8 @@ class survey extends CI_Controller {
             if(isset($qid) && $qid != "")
             {
                 
-                $this->load->model('SurveyModel');
-                $squestion = $this->SurveyModel->get_single($qid);
+                $this->load->model('Survey_model');
+                $squestion = $this->Survey_model->get_single($qid);
                 if(!is_object($squestion))
                 {
                     $data['error_message'] = "No Record Found";
@@ -187,9 +187,9 @@ class survey extends CI_Controller {
                 else
                 {
                     $data['data'] = $squestion;
-                    $this->load->model('SurveyModel');
-                    //$data['all_parents'] = $this->SurveyModel->get_parent_type();
-                    //$data['all_childs'] = $this->SurveyModel->get_sub_type($squestion->type); 
+                    $this->load->model('Survey_model');
+                    //$data['all_parents'] = $this->Survey_model->get_parent_type();
+                    //$data['all_childs'] = $this->Survey_model->get_sub_type($squestion->type); 
                 }   
                
                 
