@@ -54,11 +54,11 @@ class Exam extends CI_Controller {
             
           $data = array(
                 'name' => $this->input->post('tname'),
-                'question_data' => json_encode($alldata),
+                'question_data' => $alldata,
                 'test_type' => $this->input->post('test_type'),
                 );
            $this->load->model('exammodel');
-           $this->exammodel->insert($data);
+           $this->exammodel->insert_type1($data);
            
            $data['message'] = 'Test Added Successfully';
          }
@@ -83,14 +83,23 @@ class Exam extends CI_Controller {
         
         if ($this->form_validation->run() == TRUE)
         {
+             $sque = $this->input->post('tquestions');
+            foreach($sque as $sq)
+            {
+                $temp['qid'] = $sq;
+               // $temp['type'] = $this->input->post('qtype_'.$sq);
+               // $temp['subtype'] = $this->input->post('qsubtype_'.$sq);
+                $temp['difficulty'] = 0;
+                $alldata[] = $temp;
+            }
             
           $data = array(
                 'name' => $this->input->post('tname'),
-                'question_data' => json_encode($this->input->post('tquestions')),
+                'question_data' => $alldata,
                 'test_type' => $this->input->post('test_type'),
                 );
            $this->load->model('exammodel');
-           $this->exammodel->insert($data);
+           $this->exammodel->insert_type1($data);
            $data['message'] = 'Test Added Successfully';
          }
          $alltype = $this->questiontypemodel->get_all();
@@ -128,12 +137,12 @@ class Exam extends CI_Controller {
             
           $upddata = array(
                 'name' => $this->input->post('tname'),
-                'question_data' => json_encode($alldata),
+                'question_data' => $alldata,
                 'test_type' => $this->input->post('test_type'),
                 );
           $test_id = $this->input->post('test_id');
            $this->load->model('exammodel');
-           $this->exammodel->update_test($test_id,$upddata);
+           $this->exammodel->update_type1($test_id,$upddata);
            $data['message'] = 'Test Updated Successfully';
         }
         
@@ -179,14 +188,23 @@ class Exam extends CI_Controller {
         
         if ($this->form_validation->run() == TRUE)
         {
+             $sque = $this->input->post('tquestions');
+            foreach($sque as $sq)
+            {
+                $temp['qid'] = $sq;
+               // $temp['type'] = $this->input->post('qtype_'.$sq);
+               // $temp['subtype'] = $this->input->post('qsubtype_'.$sq);
+                $temp['difficulty'] = 0;
+                $alldata[] = $temp;
+            }
            $data = array(
                 'name' => $this->input->post('tname'),
-                'question_data' => json_encode($this->input->post('tquestions')),
+                'question_data' => $alldata,
                 'test_type' => $this->input->post('test_type'),
                 );
            $test_id = $this->input->post('test_id');
            $this->load->model('exammodel');
-           $this->exammodel->update_test($test_id,$data);
+           $this->exammodel->update_type1($test_id,$data);
            $data['message'] = 'Test Updated Successfully';
         }
          

@@ -72,13 +72,13 @@ class UsertestModel extends CI_Model {
     $this->db->where('user_id',  $user_id);
      $this->db->update("testuser_status",$data);
   }
-    
- function get_nextQuestion($test_type="test_type1", $current_qid = 0)
- {
   
-        $this->db->select('*');
-        $res = $this->db->get_where('meta_info',array('key'=>$test_type))->result();
+  function get_nextQuestion_1( $current_qid = 0)
+  {
+     $this->db->select('*');
+        $res = $this->db->get_where('meta_info',array('key'=>'test_type1'))->result();
         if(!$res) {
+            //if no test selected;
              return false;
         }
       $test_no = $res[0]->value;
@@ -90,6 +90,55 @@ class UsertestModel extends CI_Model {
        if(!isset($current_qid) || $current_qid == 0)
        {
             $nkey = 0;
+       }
+       else
+       {
+        foreach($queset as $key => $item) {
+    if($item->qid == $current_qid) {
+        $result = $key;
+        break;
+        }
+    }
+     $nkey = $result;
+
+        //$nkey = array_search($current_qid,$queset);
+          $nkey  = $nkey + 1;
+       }
+     
+     if(array_key_exists($nkey,$queset))
+     {
+        $next_que_id = $queset[$nkey];
+  
+  
+       $qdata = $this->db->get_where('question_bank',array('id'=>$next_que_id))->result();
+        $qdata[0]->index = $nkey;
+         return $qdata[0];
+     }
+     else
+     {
+        return "NO";
+     }
+  }  
+ function get_nextQuestion_2($current_qid = 0)
+ {
+
+  
+        $this->db->select('*');
+        $res = $this->db->get_where('meta_info',array('key'=>'test_type2'))->result();
+        if(!$res) {
+            //if no test selected;
+             return false;
+        }
+      $test_no = $res[0]->value;
+       $allque =  $this->db->get_where('test',array('id'=>$test_no))->result();
+       $queset = json_decode($allque[0]->question_data);
+       
+       
+       
+       if(!isset($current_qid) || $current_qid == 0)
+       {
+            $nkey = 0;
+
        }
        else
        {

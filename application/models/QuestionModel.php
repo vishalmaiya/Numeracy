@@ -6,8 +6,9 @@ class QuestionModel extends CI_Model{
     }
         
     function insert($data){
-    $this->db->insert('question_bank', $data);
+         $this->db->insert('question_bank', $data);
     }
+  
     
     function get_all()
     {
@@ -55,26 +56,42 @@ class QuestionModel extends CI_Model{
            {
                 $res->subtype_name = $subtype_name;
            }
-            $this->db->select('*');
-           $this->db->from('test');
+               $this->db->select('*');
+           $this->db->from('test_questiondata');
+           $this->db->where('qid',$res->id);
            $query = $this->db->get();
            $testres = $query->result();
-           if(!empty($testres))
+           
+           
+          // $this->db->select('*');
+//           $this->db->from('test');
+//           $query = $this->db->get();
+//           $testres = $query->result();
+        if(!empty($testres))
            {
                 foreach($testres as $test)
-                {
-                    $options = json_decode($test->question_data);
-                    foreach($options as $opt)
+                {   
+                    $this->db->select('*');
+                    $testname = $this->db->get_where("test",array('id'=>$test->tid))->result();
+                   
+                    if(isset($testname[0]->name))
                     {
-                        if($opt == $res->id)
-                        {
-                            $test_names[] = array("test_id"=>$test->id,"test_name"=>$test->name);
-                        }
-                    }   
+                         $tname =  $testname[0]->name;                        
+                       $test_names[] = array("test_id"=>$test->tid,"test_name"=>$tname,'test_type'=>$testname[0]->test_type);  
+                       
+                    }
+                    else
+                    {
+                        $test_names = "";
+                    }
+                    
+           
+                    
                 }
+                
                  $res->tests = $test_names;
                  $test_names = '';
-             }
+            }
            
           //$this->get_questiontype($res->subtype);
            $result[] = $res;  
@@ -105,22 +122,38 @@ class QuestionModel extends CI_Model{
                 $res->subtype_name = $subtype_name;
            }
            $this->db->select('*');
-           $this->db->from('test');
+           $this->db->from('test_questiondata');
+           $this->db->where('qid',$res->id);
            $query = $this->db->get();
            $testres = $query->result();
+           
+           
+          // $this->db->select('*');
+//           $this->db->from('test');
+//           $query = $this->db->get();
+//           $testres = $query->result();
         if(!empty($testres))
            {
                 foreach($testres as $test)
-                {
-                    $options = json_decode($test->question_data);
-                    foreach($options as $opt)
+                {   
+                    $this->db->select('*');
+                    $testname = $this->db->get_where("test",array('id'=>$test->tid))->result();
+                   
+                    if(isset($testname[0]->name))
                     {
-                        if($opt == $res->id)
-                        {
-                            $test_names[] = array("test_id"=>$test->id,"test_name"=>$test->name);
-                        }
-                    }   
+                         $tname =  $testname[0]->name;                        
+                       $test_names[] = array("test_id"=>$test->tid,"test_name"=>$tname,'test_type'=>$testname[0]->test_type);  
+                       
+                    }
+                    else
+                    {
+                        $test_names = "";
+                    }
+                    
+           
+                    
                 }
+                
                  $res->tests = $test_names;
                  $test_names = '';
             }

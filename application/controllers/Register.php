@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Register extends CI_Controller {
     
     function __construct() {
+        
         //load the library
         parent::__construct();
         //$this->load->library("auth");
@@ -12,11 +13,16 @@ class Register extends CI_Controller {
 //        {
 //            redirect("login"); 
 //        }
+//session_destroy();
+        
+        
     }
 
 
     public function index()
 	{
+	   $this->load->library("common");
+	   $this->common->check_mypos('R');
 	   if(isset($_POST) && !empty($_POST) && $_POST != "")
        {
             $data = array('first_name' => $_POST['fname'],
@@ -33,23 +39,15 @@ class Register extends CI_Controller {
        {
             //create session and redirect to information page
             $this->session->set_userdata("testuser_id",$result['id']);
-            $this->load->model('ExamModel');
-            $test1_id = $this->ExamModel->get_meta('test_type1');
-            $test2_id = $this->ExamModel->get_meta('test_type2');
-            $ustatus = array("user_id"=>$result['id'],
-                            "test_F"=>"T1",
-                            "test_S"=>"T2",
-                            "test1_id"=>$test1_id,
-                            "test2_id"=>$test2_id,
-                            "test_status"=>"F");
+             $ustatus = array(
+                            "user_id"=>$result['id'],
+                            "test_status" => "I"
+                            );
             $this->UsertestModel->set_testuser_status($ustatus);
-         
             redirect("information");
-            
        }
        if($result['status'] == "EXIST")
        {
-       
             // create session and redirect to question set
             $this->session->set_userdata("testuser_id",$result['id']);
             redirect("usertest");

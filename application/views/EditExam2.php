@@ -49,17 +49,24 @@
 							<tbody>
                             <?php
                             if(is_array($allquestions)){
-                                 foreach($allquestions as $key=>$val)
+                                 $ansdatas = $data->question_data;
+                                                                                                
+                                        foreach($allquestions as $key=>$val)
                                         { 
-                                            $options = json_decode($data->question_data);
-                                            if (in_array($val->id,$options)) {
-                                                $class = "active_tupple";
-                                                $chk = "checked";
-                                            }
-                                            else
-                                            {
-                                                $class = "";
-                                                $chk = "";
+                                            
+                                            foreach($ansdatas as $adata)
+                                            { 
+                                            if($adata->qid == $val->id)
+                                               {
+                                                   $class = "active_tupple";
+                                                    $chk = "checked"; 
+                                                    break;
+                                               }
+                                               else
+                                               {
+                                                     $class = "";
+                                                     $chk = "";
+                                               }
                                             }
                                             ?>
                                             <tr class="<?php echo $class; ?>">

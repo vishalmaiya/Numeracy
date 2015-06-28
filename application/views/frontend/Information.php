@@ -44,7 +44,7 @@ Sed eu gravida velit. Aliquam congue dignissim tortor sed lacinia. Nulla ut lect
         
                 
 
-                <form action="usertest" method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="QEAMzFwrIqwU4Rv1gxuTdFD2czIiYJAv">
+                <form action="" method="post" id="login-form"><input type="hidden" name="csrfmiddlewaretoken" value="QEAMzFwrIqwU4Rv1gxuTdFD2czIiYJAv">
                     
 
 
@@ -52,7 +52,7 @@ Sed eu gravida velit. Aliquam congue dignissim tortor sed lacinia. Nulla ut lect
                     
                     
 <div class="card-action right-align">
-    <button type="submit" class="btn btn-primary">Accept</button>
+    <button type="submit" name="infoaccept" value="ACCEPTED" class="btn btn-primary">Accept</button>
 </div>
                 </form>
             </div>

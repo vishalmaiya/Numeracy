@@ -51,7 +51,8 @@
 							<tbody>
                             <?php
                             if(is_array($allquestions)){
-                                $ansdatas = json_decode($data->question_data);
+                                $ansdatas = $data->question_data;
+                                
                                         foreach($allquestions as $key=>$val)
                                         { 
                                             
@@ -157,9 +158,7 @@
                                                 
         									</tr>
                                             <?php
-                                        }
-                                    
-                                       
+                                        } 
                                 }
                                 
                             ?>
@@ -173,7 +172,7 @@
 								<div class="">
                                     <input type="hidden" name="test_type" value="1"/>
                                     <input type="hidden" name="test_id" value="<?php echo $_GET['tid']; ?>"/>
-									<input type="submit" class="btn btn-primary" value="Add Test" />
+									<input type="submit" class="btn btn-primary" value="Update Test" />
                                     <input type="reset" class="btn btn-default" value="Cancel" />
 								</div>
 							</div>

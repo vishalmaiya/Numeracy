@@ -76,7 +76,7 @@
                                                 $tcount++;
                                                 $tid = $t['test_id'];
                                                 $tname = $t['test_name'];
-                                                echo "- <a href='".site_url()."edit-exam?tid=$tid' target='_blank'>".$tname."</a><br/>";
+                                                echo "- <a href='".site_url()."edit-exam".$t['test_type']."?tid=$tid' target='_blank'>".$tname."</a><br/>";
                                             }
                                         }
                                          ?></td>
