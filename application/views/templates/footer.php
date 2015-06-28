@@ -14,6 +14,12 @@
 <script src="<?php echo base_url();?>public/js/bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>public/js/landerapp.min.js"></script>
 
+
+<!-- Jquery for validation  -->
+<script type="text/javacsript" src="<?php echo base_url();?>public/js/jquery.js"></script>
+<script type="text/javacsript" src="<?php echo base_url();?>public/js/jquery.validate.js"></script>
+
+
 <script type="text/javascript">
 
 jQuery('.qtype').on('change', function() {

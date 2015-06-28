@@ -93,3 +93,10 @@ float: left;
 {
       min-width: 115px;
 }
+
+.has-error .help-block{
+
+
+  float: left;
+  width: 92%;
+}

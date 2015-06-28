@@ -106,6 +106,102 @@
 					});
 				</script>
 				<!-- / Javascript -->
+					<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+			<script>
+				
+				jQuery("document").ready(function() {
+					// validate the comment form when it is submitted
+					$("#commentForm").validate();
+
+				
+
+					// validate signup form on keyup and submit
+					$("#myForm").validate({
+						
+						rules: {
+							questiontype: "required",
+							subtype: "required",
+							question: {
+								required: true,
+								minlength: 8
+							},
+							password: {
+								required: true,
+								minlength: 5
+							},
+							confirm_password: {
+								required: true,
+								minlength: 5,
+								equalTo: "#password"
+							},
+							email: {
+								required: true,
+								email: true
+							},
+							topic: {
+								required: "#newsletter:checked",
+								minlength: 2
+							},
+							agree: "required"
+						},
+						messages: {
+							firstname: "Please enter your firstname",
+							lastname: "Please enter your lastname",
+							username: {
+								required: "Please enter a username",
+								minlength: "Your username must consist of at least 2 characters"
+							},
+							password: {
+								required: "Please provide a password",
+								minlength: "Your password must be at least 5 characters long"
+							},
+							confirm_password: {
+								required: "Please provide a password",
+								minlength: "Your password must be at least 5 characters long",
+								equalTo: "Please enter the same password as above"
+							},
+							email: "Please enter a valid email address",
+							agree: "Please accept our policy"
+						}
+					});
+
+
+
+						$('input[type="text"]').each(function() {
+					    $(this).rules('add', {
+					        required: true,
+					        
+					        messages: {
+					            required: " Please enter a option!",
+					            
+					        }
+					    });
+					});
+
+					// propose username by combining first- and lastname
+					$("#username").focus(function() {
+						var firstname = $("#firstname").val();
+						var lastname = $("#lastname").val();
+						if (firstname && lastname && !this.value) {
+							this.value = firstname + "." + lastname;
+						}
+					});
+
+					//code to hide topic selection, disable for demo
+					var newsletter = $("#newsletter");
+					// newsletter topics are optional, hide at first
+					var inital = newsletter.is(":checked");
+					var topics = $("#newsletter_topics")[inital ? "removeClass" : "addClass"]("gray");
+					var topicInputs = topics.find("input").attr("disabled", !inital);
+					// show when newsletter is checked
+					newsletter.click(function() {
+						topics[this.checked ? "removeClass" : "addClass"]("gray");
+						topicInputs.attr("disabled", !this.checked);
+					});
+				});
+			</script>
 
 
 					
@@ -135,7 +231,7 @@
                 <div class="form-group">
                  <label for="quetype" class="col-sm-3 control-label">Question Type</label>
                     <div class="col-sm-9">
-	                   <select class="form-control" id="jquery-select-type"  name="qtype">
+	                   <select class="form-control" id="questiontype"  name="qtype">
 							<option>-- Select --</option>
 							<?php
                             foreach($all_parents as $parent)
@@ -151,7 +247,7 @@
                     <div class="form-group">
 						<label for="jq-select-subtype" class="col-sm-3 control-label">SubType</label>
 						<div class="col-sm-9">
-	                       <select id="jquery-select-subtype" class="form-control" name="qsubtype">
+	                       <select id="subtype" class="form-control" name="qsubtype">
                             </select>
     						</div>
     	                   </div>
@@ -181,11 +277,11 @@
                                 {
                                     ?>
                               <span class="input-group-addon custome-ans">
-								<label class="px-single">
+								<label class="px-single" >
                                     <input type="radio" name="qanswer" value="<?php echo $option; ?>" class="px"/>
                                         <span class="lbl"></span></label>
 							 </span>
-                                    <input type="text" value="<?php echo $option; ?>" class="form-control custom-input" id="jq-validation-choice1" name="choice[]" placeholder="Required" />
+                                    <input type="text"  value="<?php echo $option; ?>" class="form-control custom-input" id="jq-validation-choice1" name="choice[]" placeholder="Required" required />
                                     <span class="input-group-addon bg-danger no-border removeoption">
                                         <span class="bg-danger" href="javascript:void(0);" >
                                             <i class="fa fa-times"></i>
@@ -196,8 +292,8 @@
                                 else
                                 {
                                     ?>
-                                    <span class="input-group-addon custome-ans">
-        								<label class="px-single">
+                                    <span class="input-group-addon custome-ans" >
+        								<label class="px-single" class="has-error .help-block">
                                             <input type="radio" name="qanswer" value="<?php echo $i; ?>" class="px"/><span class="lbl"></span></label>
         							 </span>
                                     <input type="text" value="<?php echo $option; ?>" class="form-control custom-input" id="jq-validation-choice1" name="choice[]" placeholder="Required">
